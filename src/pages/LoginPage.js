@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView, Text, TextInput, View, Button, StyleSheet } from 'react-native';
+import { Text, TextInput, View, Button, StyleSheet } from 'react-native';
 import { login } from '../redux/auth/actions';
 import Logo from "../components/Logo";
- 
+import LoginForm from "../components/Login";
 class Login extends Component {
     constructor (props) {
         super(props);
@@ -27,22 +27,16 @@ class Login extends Component {
     render () {
         let alt = (this.state.route === 'Login') ? 'SignUp' : 'Login';
         return (
-            <ScrollView style={styles.container}>
+            <View style={styles.container}>
                 <Logo style={styles.logo}/>
                 <Text style={styles.welcome}>
-                    {this.state.route}
+                    Welkom op de app van Karavaan VZW!
                 </Text>
-                <TextInput 
-                    placeholder='Username'
-                    autoCapitalize='none'
-                    autoCorrect={false} 
-                    autoFocus={true} 
-                    keyboardType='email-address'
-                    value={this.state.username} 
-                    onChangeText={(text) => this.setState({ username: text })} />
-                <View style={{margin: 7}}/>
-                <Button onPress={(e) => this.userLogin(e)} title={this.state.route}/>
-            </ScrollView>
+                <Text style={styles.welcome}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </Text>
+                <LoginForm />
+            </View>
         );
     }
 }
@@ -51,26 +45,18 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       flexDirection: 'column',
-      backgroundColor: '#F5FCFF',
+      justifyContent: 'flex-start',
       padding: 20,
     },
-    logo: {
-        flex: 1,
-        alignSelf: 'center',
-        resizeMode: 'cover',
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
     welcome: {
       fontSize: 20,
-      textAlign: 'center',
-      margin: 10,
+      margin: 10,      
     },
     instructions: {
       textAlign: 'center',
-      color: '#333333',
       marginBottom: 5,
     },
+
   });
  
 const mapStateToProps = (state, ownProps) => {

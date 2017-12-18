@@ -10,17 +10,8 @@ export default class Logo extends Component<{}> {
     return (
       <Image 
         source={require('../../res/img/logo_tmp.png')}
-        style = {styles.logo}
+        resizeMode = 'contain'
       />
     );
   }
 }
-
-const styles = StyleSheet.create({
-  logo: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  
-});
