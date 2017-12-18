@@ -9,18 +9,22 @@ import {
   SectionList,
   FlatList,
   TouchableHighlight,
-  Alert
+  Alert,
+  View
 } from 'react-native';
 
 export default class TripList extends Component<{}> {
   render() {
     return (
+      <View>
+        <Text style={styles.titleText} >A list of all the trips: </Text>
         <FlatList
           data={dummyTrips2}
           renderItem={({ item }) => (
               <Text> {item.text} </Text>
           )}
         />
+      </View>
     );
   }
 }
@@ -38,5 +42,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     color: '#841584',
   },
+  titleText: {
+    fontSize: 20, 
+    fontWeight: 'bold',
+  }
   
 });

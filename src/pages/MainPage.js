@@ -5,6 +5,8 @@ import { logout } from '../redux/auth/actions';
 import Logo from "../components/Logo";
 
 import TripList from "../components/TripList";
+import BillList from "../components/BillList";
+import BillTotals from "../components/BillTotals";
 class Secured extends Component {
     userLogout(e) {
         this.props.onLogout();
@@ -21,6 +23,8 @@ class Secured extends Component {
                 <View style={{margin: 20}}/>
 
                 <TripList />
+                <BillList />
+                <BillTotals />
 
                 <Button onPress={(e) => this.userLogout(e)} title="Logout"/>
             </ScrollView>
