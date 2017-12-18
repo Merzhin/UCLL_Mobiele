@@ -20,6 +20,7 @@ export default class Login extends Component<{}> {
             keyboardType='email-address'
             accessibilityLabel="To log in enter your username here."
           />
+          
           <Button 
             title="Log in"
             StyleSheet ='styles'
