@@ -12,28 +12,19 @@ import {
   View
 } from 'react-native';
 import Logo from "./src/components/Logo"
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
+import Login from "./src/components/Login"
 export default class App extends Component<{}> {
   render() {
     return (
       <View style={styles.container}>
-        <Logo/>
+        <Logo style={styles.logo}/>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          Welcome op de Karavaan VZW app!
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit App.js
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
         </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+        <Login/>
       </View>
     );
   }
@@ -42,10 +33,12 @@ export default class App extends Component<{}> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
+    flexDirection: 'column',
     backgroundColor: '#F5FCFF',
   },
+
   welcome: {
     fontSize: 20,
     textAlign: 'center',
