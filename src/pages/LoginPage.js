@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text, View, StyleSheet } from 'react-native';
-import { login } from '../redux/auth/actions';
+import { login } from '../redux/actions/auth';
 import Logo from '../components/Logo';
 import LoginForm from '../components/Login';
 

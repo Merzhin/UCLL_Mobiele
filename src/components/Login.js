@@ -7,7 +7,7 @@ import {
   KeyboardAvoidingView,
   Button
 } from 'react-native';
-import { login } from '../redux/auth/actions';
+import { login } from '../redux/actions/auth';
 
 class Login extends Component {
   constructor(props) {

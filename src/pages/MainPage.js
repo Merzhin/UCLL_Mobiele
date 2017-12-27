@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView, Text, View, Button } from 'react-native';
-import { logout } from '../redux/auth/actions';
+import { logout } from '../redux/actions/auth';
 import Logo from '../components/Logo';
 
 import TripList from '../components/TripList';
