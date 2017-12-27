@@ -1,20 +1,36 @@
 import { List, Map } from 'immutable';
 
-const init = List([]);
+ const init = {
+   trips: [{ id: 0, isFinished: true,  text: 'Bahamas' }]
+ }
 
-export default function(trips=init, action) {
+  const reducer = (state=init, action) => {
   switch(action.type) {
     case 'ADD_TRIP':
-        return trips.push(Map(action.payload));
+    
+        return {...state,
+         trips: [...state.trips,action.payload]};
+        
     case 'TOGGLE_FINISH_TRIP':
-        return trips.map(t => {
+        return state.map(t => {
             if(t.get('id') === action.payload) {
                 return t.update('isFinished', isFinished => !isFinished);
               } else {
                 return t;
               }
         });
+  case 'e':
+         let newState = {}
+            state.forEach( (trip) => {
+              let id = trip.id
+              newState[id] = Object.assign({}, trip, { id });
+                  })
+    
+                  return newState;
+          
     default:
-      return trips;
+      return state;
   }
 }
+
+export default reducer
