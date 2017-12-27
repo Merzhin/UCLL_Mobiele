@@ -1,13 +1,16 @@
-import { combineReducers } from 'redux';
-import { createStore } from 'redux';
-import auth from './auth/reducers';
-import trips from './trip/reducers';
 
-const rootReducer = combineReducers({
-    auth,
-    trips
-});
+import { applyMiddleware, createStore } from 'redux';
 
-let store = createStore(rootReducer);
+import logger from 'redux-logger'
+
+
+
+
+
+
+
+import reducers from './reducers';
+
+const store = createStore(reducers,applyMiddleware(logger));
  
 export default store;

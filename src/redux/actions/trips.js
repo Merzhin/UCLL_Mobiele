@@ -1,10 +1,10 @@
-export function addTrip(createdByUsername) {
+export const addTrip = (textt) => {
     return {
       type: 'ADD_TRIP',
       payload: {
         id: uid(),
         isFinished: false,
-        text: text
+        text: textt
       }
     };
 }
@@ -16,8 +16,12 @@ export function finishTrip(id) {
     }
   }
 
+  export function gete() {
+    return {
+      type: 'e'
+     }}
+
 // hack for generating passable unique ids
 // TODO: fix this!
 const uid = () => Math.random().toString(34).slice(2);
-
 

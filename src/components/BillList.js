@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
-import { List, Map } from 'immutable';
 import {
   Text,
-  TextInput,
   StyleSheet,
-  ScrollView,
-  Button,
-  SectionList,
   FlatList,
-  TouchableHighlight,
-  Alert,
   View
 } from 'react-native';
 import styles2 from '../styles/styles';

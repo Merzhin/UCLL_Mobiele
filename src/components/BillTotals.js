@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
-import { List, Map } from 'immutable';
 import {
-  Text,
-  TextInput,
   StyleSheet,
-  ScrollView,
-  Button,
-  SectionList,
-  FlatList,
-  TouchableHighlight,
-  Alert
 } from 'react-native';
-import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
+import { Table, Rows, Row } from 'react-native-table-component';
 
 export default class tableView extends Component {
   render() {
@@ -22,11 +13,11 @@ export default class tableView extends Component {
   
     return (
       <Table>
-          <Row data={tableHead} style={styles.head} textStyle={styles.text}/>
-          <Rows data={tableData} style={styles.row} textStyle={styles.text}/>
+          <Row data={tableHead} style={styles.head} textStyle={styles.text} />
+          <Rows data={tableData} style={styles.row} textStyle={styles.text} />
       </Table>
       
-    )
+    );
   }
 }
  
@@ -34,7 +25,4 @@ const styles = StyleSheet.create({
   head: { height: 40, backgroundColor: '#f1f8ff' },
   text: { marginLeft: 5 },
   row: { height: 30 }
-})
-
-
-
+});
