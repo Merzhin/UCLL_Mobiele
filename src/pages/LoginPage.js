@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text, TextInput, View, Button, StyleSheet } from 'react-native';
 import { login } from '../redux/auth/actions';
-import Logo from "../components/Logo";
-import LoginForm from "../components/Login";
+import Logo from '../components/Logo';
+import LoginForm from '../components/Login';
+
 class Login extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.state = {
             route: 'Login',
@@ -13,12 +14,12 @@ class Login extends Component {
         };
     }
  
-    userLogin (e) {
+    userLogin(e) {
         this.props.onLogin(this.state.username);
         e.preventDefault();
     }
  
-    toggleRoute (e) {
+    toggleRoute(e) {
         let alt = (this.state.route === 'Login') ? 'SignUp' : 'Login';
         this.setState({ route: alt });
         e.preventDefault();
@@ -33,7 +34,7 @@ class Login extends Component {
                     Welkom op de app van Karavaan VZW!
                 </Text>
                 <Text style={styles.welcome}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Lorem ipsum dolor sit amet,consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </Text>
                 <LoginForm />
             </View>
@@ -63,13 +64,13 @@ const mapStateToProps = (state, ownProps) => {
     return {
         isLoggedIn: state.auth.isLoggedIn
     };
-}
+};
  
 const mapDispatchToProps = (dispatch) => {
     return {
         onLogin: (username) => { dispatch(login(username)); },
         onSignUp: (username) => { dispatch(signup(username)); }
     }
-}
+};
  
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
