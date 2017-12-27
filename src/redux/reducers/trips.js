@@ -15,9 +15,8 @@ import { List, Map } from 'immutable';
         return state.map(t => {
             if(t.get('id') === action.payload) {
                 return t.update('isFinished', isFinished => !isFinished);
-              } else {
-                return t;
-              }
+              } 
+              return t;
         });
   case 'e':
          let newState = {}

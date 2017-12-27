@@ -11,20 +11,17 @@ import MainPage from './src/pages/MainPage';
 
 class App extends Component {
   render() {
-      if (this.props.isLoggedIn) {
-          return <MainPage />;
-      } else {
-          return <LoginPage />;
-      }
+        if (this.props.isLoggedIn) {
+            return <MainPage />;
+        } 
+        return <LoginPage />;
   }
 }
-
-
 
 const mapStateToProps = (state, ownProps) => {
   return {
       isLoggedIn: state.auth.isLoggedIn
   };
-}
+};
 
 export default connect(mapStateToProps)(App);

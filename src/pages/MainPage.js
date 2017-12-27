@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView, Text, View, Button } from 'react-native';
-import { logout } from '../redux/auth/actions';
-import Logo from "../components/Logo";
-import Trips from "../components/Trips";
-import TripList from "../components/TripList";
-import BillList from "../components/BillList";
-import BillTotals from "../components/BillTotals";
-import Currencies from "../components/Currencies";
+import { logout } from '../redux/actions/auth';
+import Logo from '../components/Logo';
+
+import Trips from '../components/Trips';
+import BillList from '../components/BillList';
+import BillTotals from '../components/BillTotals';
+
 class Secured extends Component {
     userLogout(e) {
         this.props.onLogout();
@@ -16,9 +16,9 @@ class Secured extends Component {
      
     render() {
         return (
-            <ScrollView style={{padding: 20}}>
+            <ScrollView style={{ padding: 20 }}>
              <Logo />
-                <Text style={{fontSize: 27}}>
+                <Text style={{ fontSize: 27 }}>
                     {`Welcome ${this.props.username}`}
                 </Text>
                 <View style={{margin: 20}}/>
@@ -34,9 +34,6 @@ class Secured extends Component {
     }
 }
 
-
- 
- 
 const mapStateToProps = (state, ownProps) => {
     return {
         username: state.auth.username,
