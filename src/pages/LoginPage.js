@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, TextInput, View, Button, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import { login } from '../redux/auth/actions';
 import Logo from '../components/Logo';
 import LoginForm from '../components/Login';
@@ -25,7 +25,7 @@ class Login extends Component {
         e.preventDefault();
     }
  
-    render () {
+    render() {
         let alt = (this.state.route === 'Login') ? 'SignUp' : 'Login';
         return (
             <View style={styles.container}>
@@ -70,7 +70,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onLogin: (username) => { dispatch(login(username)); },
         onSignUp: (username) => { dispatch(signup(username)); }
-    }
+    };
 };
  
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

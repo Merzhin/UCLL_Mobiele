@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 import { login } from '../redux/auth/actions';
 
-class Login extends Component<{}> {
-  constructor (props) {
+class Login extends Component {
+  constructor(props) {
     super(props);
     this.state = {
         route: 'Login',
@@ -18,12 +18,12 @@ class Login extends Component<{}> {
     };
 }
 
-userLogin (e) {
+userLogin(e) {
     this.props.onLogin(this.state.username);
     e.preventDefault();
 }
 
-toggleRoute (e) {
+toggleRoute(e) {
     let alt = (this.state.route === 'Login') ? 'SignUp' : 'Login';
     this.setState({ route: alt });
     e.preventDefault();
@@ -40,7 +40,8 @@ toggleRoute (e) {
           autoFocus={false} 
           keyboardType='email-address'
           value={this.state.username} 
-          onChangeText={(text) => this.setState({ username: text })} />
+          onChangeText={(text) => this.setState({ username: text })} 
+          />
           <Button 
             accessibilityLabel="To log in press this button"
             onPress={(e) => this.userLogin(e)} title={this.state.route}
@@ -49,17 +50,6 @@ toggleRoute (e) {
     );
   }
 }
-
-
-const styles = StyleSheet.create({
-
-  loginButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: '#841584',
-  },
-  
-});
 
 const mapStateToProps = (state, ownProps) => {
   return {

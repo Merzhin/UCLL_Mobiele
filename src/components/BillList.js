@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
-import { List, Map } from 'immutable';
 import {
   Text,
-  TextInput,
   StyleSheet,
-  ScrollView,
-  Button,
-  SectionList,
   FlatList,
-  TouchableHighlight,
-  Alert,
   View
 } from 'react-native';
 
-export default class BillList extends Component<{}> {
+export default class BillList extends Component {
   render() {
     return (
         <View> 
@@ -31,9 +24,9 @@ export default class BillList extends Component<{}> {
 }
 
 const dummyBills = [ 
-        { id: 0, isPayed: false,  owner: 'Pieter',  amount: '40,00', currency: 'EUR'},
-        { id: 0, isPayed: false,  owner: 'Tom',  amount: '50,00', currency: 'USD'},
-        { id: 0, isPayed: false,  owner: 'Michiel',  amount: '15,00', currency: 'GBP'}
+        { id: 0, isPayed: false, owner: 'Pieter', amount: '40,00', currency: 'EUR' },
+        { id: 0, isPayed: false, owner: 'Tom', amount: '50,00', currency: 'USD' },
+        { id: 0, isPayed: false, owner: 'Michiel', amount: '15,00', currency: 'GBP' }
     ];
 
 const styles = StyleSheet.create({

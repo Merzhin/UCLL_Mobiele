@@ -1,5 +1,4 @@
-import { combineReducers } from 'redux';
-import { createStore } from 'redux';
+import { combineReducers, createStore } from 'redux';
 import auth from './auth/reducers';
 import trips from './trip/reducers';
 
