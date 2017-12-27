@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { ScrollView, Text, View, Button } from 'react-native';
 import { logout } from '../redux/actions/auth';
 import Logo from '../components/Logo';
-
+import Currencies from '../components/Currencies';
 import Trips from '../components/Trips';
 import BillList from '../components/BillList';
 import BillTotals from '../components/BillTotals';

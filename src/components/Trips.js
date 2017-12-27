@@ -13,8 +13,7 @@ import {
   View
 } from 'react-native';
 import { connect } from 'react-redux';
-import { addTrip } from '../redux/trip/actions';
-import { gete } from '../redux/trip/actions';
+import { addTrip } from '../redux/actions/trips';
  class Trips extends Component<{}> {
     constructor(props){
         super(props);
