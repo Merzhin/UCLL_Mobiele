@@ -7,10 +7,8 @@ import Currencies from '../components/Currencies';
 import Trips from '../components/Trips';
 import BillList from '../components/BillList';
 import BillTotals from '../components/BillTotals';
-
 import TripList from "../components/TripList";
-import BillList from "../components/BillList";
-import BillTotals from "../components/BillTotals";
+
 class MainPage extends Component {
     userLogout(e) {
         this.props.onLogout();
