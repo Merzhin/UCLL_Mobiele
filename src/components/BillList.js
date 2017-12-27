@@ -3,11 +3,11 @@ import {
   Text,
   StyleSheet,
   FlatList,
-  View
+  View,
+  TouchableHighlight
 } from 'react-native';
 import styles2 from '../styles/styles';
 import {Row} from 'react-native-table-component';
-import {TouchableHighlight} from 'react-navigation';
 
 export default class BillList extends Component<{}> {
 
@@ -20,7 +20,7 @@ export default class BillList extends Component<{}> {
         return (
             <View> 
                 <Text style={styles.titleText}>A list of all the bills: </Text>   
-{/*                 <FlatList
+                <FlatList
                 data={dummyBills}
                 renderItem={({ item }) => (
                     <TouchableHighlight onPress={() => this.onPress(item)} >
@@ -30,7 +30,7 @@ export default class BillList extends Component<{}> {
                     </TouchableHighlight> 
                 )
                 }
-                /> */}
+                />
             </View>
         );
     }
