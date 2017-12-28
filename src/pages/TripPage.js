@@ -21,7 +21,7 @@ class TripPage extends Component {
         //const  text = this.props.navigation.state.param.tripData.text;
         return (
             <ScrollView style={{ padding: 20 }}>
-                <Text>{text}</Text>
+                <Text>Data here</Text>
             
             </ScrollView>
         );
