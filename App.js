@@ -5,16 +5,26 @@
  */
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
+import { StackNavigator } from 'react-navigation'
+import store from './src/redux';
+import { AppRegistry } from 'react-native';
+import { TripStack } from './src/components/AppNav';
 import LoginPage from './src/pages/LoginPage';
-import MainPage from './src/pages/MainPage';
+
 
 class App extends Component {
   render() {
-        if (this.props.isLoggedIn) {
-            return <MainPage />;
-        } 
-        return <LoginPage />;
+
+      if (this.props.isLoggedIn) {
+        return ( 
+          <Provider store={store}> 
+            <TripStack/>
+          </Provider>
+        )
+        
+      } 
+      return <LoginPage />;
   }
 }
 
