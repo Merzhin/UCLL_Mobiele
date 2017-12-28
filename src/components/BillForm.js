@@ -27,7 +27,7 @@ import { addExpense } from '../redux/actions/expenses';
 
 
     addexpense(){
-        this.props.onAddExpense(this.state.amount,this.state.description,this.state.whopaid);
+        this.props.onAddExpense(this.state.amount,this.state.description,this.state.whopaid,this.props.navigation.state.params.trip.id);
     }
   
   render() {
@@ -67,7 +67,7 @@ import { addExpense } from '../redux/actions/expenses';
  
   const mapDispatchToProps = (dispatch) => {
       return {
-          onAddExpense: (amount,description,whopaid) => { dispatch(addExpense(amount,description,whopaid)); }
+          onAddExpense: (amount,description,whopaid,tripID) => { dispatch(addExpense(amount,description,whopaid,tripID)); }
       }
     }
     
