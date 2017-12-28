@@ -1,11 +1,12 @@
-export const addExpense = (amount,description,whopaid) => {
+export const addExpense = (amount,description,whopaid,tripID) => {
     return {
       type: 'ADD_EXPENSE',
       payload: {
         id: uid(),
         amount,
         description,
-        whopaid
+        whopaid,
+        tripID
         
       }
     };

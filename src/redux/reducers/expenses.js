@@ -1,6 +1,6 @@
 
  const init = {
-   expenses: [{ id: 0, amount:'',  description: 'drank dag 1', whopaid: 'jan'}]
+   expenses: [{ id: 0, amount:'',  description: 'drank dag 1', whopaid: 'jan', tripID: ''}]
  }
 
   const reducer = (state=init, action) => {
