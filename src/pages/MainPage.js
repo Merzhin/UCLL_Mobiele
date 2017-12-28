@@ -32,7 +32,7 @@ class MainPage extends Component {
                 <BillList />
                 <BillTotals />
                 
-                <Button onPress={(e) => this.userLogout(e)} title="Logout"/>
+                <Button onPress={(e) => this.userLogout(e)} title="Logout" />
             </ScrollView>
         );
     }

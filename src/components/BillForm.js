@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { addExpense } from '../redux/actions/expenses';
+import { NavigationActions } from 'react-navigation';
 
  class BillForm extends Component {
     constructor(props){
@@ -28,6 +29,7 @@ import { addExpense } from '../redux/actions/expenses';
 
     addexpense(){
         this.props.onAddExpense(this.state.amount,this.state.description,this.state.whopaid);
+        this.props.navigation.goBack(null);
     }
   
   render() {
