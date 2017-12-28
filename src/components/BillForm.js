@@ -15,7 +15,7 @@ import {
 import { connect } from 'react-redux';
 import { addExpense } from '../redux/actions/expenses';
 
- class Bills extends Component {
+ class BillForm extends Component {
     constructor(props){
         super(props)
         this.state = {description : '' ,
@@ -71,4 +71,4 @@ import { addExpense } from '../redux/actions/expenses';
       }
     }
     
-  export default connect(mapStateToProps, mapDispatchToProps)(Bills);
+  export default connect(mapStateToProps, mapDispatchToProps)(BillForm);
