@@ -22,7 +22,7 @@ import { addTrip } from '../redux/actions/trips';
     }
 
     onTripPress = ( trip ) => {
-      this.props.navigation.navigate('Trip', {tripData: trip});
+      this.props.navigation.navigate('Trip', { trip });
     } ; 
 
   trips() {

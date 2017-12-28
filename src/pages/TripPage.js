@@ -18,10 +18,12 @@ class TripPage extends Component {
     }
      
     render() {
-        //const  text = this.props.navigation.state.param.tripData.text;
+        console.log (this.props.navigation);
+        const  trip = this.props.navigation.state.params.trip;
+        console.log(trip);
         return (
             <ScrollView style={{ padding: 20 }}>
-                <Text>Data here</Text>
+                <Text>{trip.text}</Text>
             
             </ScrollView>
         );
