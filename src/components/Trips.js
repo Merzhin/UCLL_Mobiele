@@ -62,17 +62,17 @@ import { addTrip } from '../redux/actions/trips';
 
 
 const mapStateToProps = (state) => {
-          return {
-            trips: state.trips.trips
-          };
-        }
-        const mapDispatchToProps = (dispatch) => {
-            return {
-                onAddTrip: (locatie) => { dispatch(addTrip(locatie)); }
-            }
-          }
-          
-        export default connect(mapStateToProps, mapDispatchToProps)(Trips);
+  return {
+    trips: state.trips.trips
+  };
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onAddTrip: (locatie) => { dispatch(addTrip(locatie)); }
+    }
+  }
+  
+export default connect(mapStateToProps, mapDispatchToProps)(Trips);
 
 const styles = StyleSheet.create({
 
