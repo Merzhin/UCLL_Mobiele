@@ -29,7 +29,7 @@ export class Currency extends Component {
       return (
         <View>
                 <TouchableHighlight onPress={() => {  this.getRates(); this.setState({modalVisibility:true});}}>
-                    <Text>{this.props.amount}</Text>
+                    <Text>{this.props.amount} {this.props.base} </Text>
                 </TouchableHighlight>
                 <Modal isVisible={this.state.modalVisibility}>
                     <View style={ styles.modalContent }>
