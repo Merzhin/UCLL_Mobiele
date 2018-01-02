@@ -15,7 +15,7 @@ import {
 import { connect } from 'react-redux';
 import { addExpense } from '../redux/actions/expenses';
 import { NavigationActions } from 'react-navigation';
-
+import Item from '../components/Item';
  class BillForm extends Component {
     constructor(props){
         super(props)
@@ -38,6 +38,9 @@ import { NavigationActions } from 'react-navigation';
       
     return (
         <View>
+          <View>
+            <Item />
+          </View>
             <View>
                 <TextInput 
                   onChangeText={(text) => this.setState({description : text})}
