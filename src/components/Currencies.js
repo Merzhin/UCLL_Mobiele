@@ -34,10 +34,10 @@ export default class Currencies extends Component {
   
     return (
       <View>
-<Currency name='Euro'  rate={1} />
-<Currency name='USD'  rate={0.986} />
-<Currency name='GBP'  rate={1.023} />
-          </View>
+        <Currency name='Euro'  rate={1} />
+        <Currency name='USD'  rate={0.986} />
+        <Currency name='GBP'  rate={1.023} />
+      </View>
       
     );
   }

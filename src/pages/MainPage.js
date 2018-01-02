@@ -11,6 +11,7 @@ import BillList from '../components/BillList';
 import BillTotals from '../components/BillTotals';
 
 import TripList from "../components/TripList";
+import { Currency } from "../components/Currency";
 class MainPage extends Component {
 
     userLogout(e) {
@@ -28,7 +29,7 @@ class MainPage extends Component {
                 <View style={{margin: 20}}/>
                 <Currencies />
                 <Trips navigation={this.props.navigation}/>
-               
+                <Currency base={'USD'} amount={'2'} /> 
                 <BillList />
                 <BillTotals />
                 

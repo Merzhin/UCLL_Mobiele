@@ -20,8 +20,8 @@ import Item from '../components/Item';
     constructor(props){
         super(props)
         this.state = {description : '' ,
-                        amount: '',
-                    whopaid: ''}
+                      amount: '',
+                      whopaid: ''}
     }
 
     
