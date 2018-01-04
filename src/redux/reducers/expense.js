@@ -1,6 +1,6 @@
 
  const init = {
-     id:'', amount: 5, item:[{ amount:1,  description: 'drank dag 1', user:'jan'}], betaling:[{naam:'jan', amount:1}]
+     id:'', description: 'drank dag2', amount: 5, item:[{ amount:1,  description: 'drank dag 1', user:'jan'}], betaling:[{naam:'jan', amount:1}]
   }
  
    const reducer = (state=init, action) => {

@@ -13,7 +13,7 @@ import {
   View
 } from 'react-native';
 import { connect } from 'react-redux';
-import { addExpense } from '../redux/actions/expenses';
+import { addExpense, addExpenseObject } from '../redux/actions/expenses';
 import { NavigationActions } from 'react-navigation';
 import Item from '../components/Item';
  class BillForm extends Component {
@@ -31,11 +31,18 @@ import Item from '../components/Item';
         this.props.onAddExpense(this.state.amount,this.state.description,this.state.whopaid,this.props.navigation.state.params.trip.id);
         this.props.navigation.goBack(null);
     }
+    addexpenseobject(){
+      this.props.onAddExpenseObject(this.props.expense,this.props.navigation.state.params.trip.id);
+      this.props.navigation.goBack(null);
+  }
     items() {
      
 
       return Object.keys(this.props.items).map(key => this.props.items[key])
     }
+
+
+   
   render() {
       console.log(this.props);
     
@@ -48,7 +55,9 @@ import Item from '../components/Item';
             <Item />
             
             { this.items().map((expense) => {return <Text key={expense.description}> {expense.description}</Text>})}
-
+            <TouchableHighlight onPress={() => this.addexpenseobject()}>
+              <Text>Add expenseobject</Text>
+            </TouchableHighlight>
           </View>
             <View>
                 <TextInput 
@@ -83,8 +92,8 @@ import Item from '../components/Item';
  
   const mapDispatchToProps = (dispatch) => {
       return {
-          onAddExpense: (amount,description,whopaid,tripID) => { dispatch(addExpense(amount,description,whopaid,tripID)); }
-      }
+          onAddExpense: (amount,description,whopaid,tripID) => { dispatch(addExpense(amount,description,whopaid,tripID)); },
+          onAddExpenseObject: (expense,tripID) => { dispatch(addExpenseObject(expense,tripID)); }
     }
-    
+  }
   export default connect(mapStateToProps, mapDispatchToProps)(BillForm);

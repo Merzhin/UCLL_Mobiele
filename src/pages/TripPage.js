@@ -39,7 +39,6 @@ class TripPage extends Component {
                 { this.trips().map((expense) => {return <TouchableHighlight onPress={() => this.onTripPress(trip)}><Text key={expense.id}> {expense.description}</Text></TouchableHighlight>})}
                 
                 <Button onPress={() => this.newExpense(trip)} title='New Expense'/>
-
             </ScrollView>
         );
     }

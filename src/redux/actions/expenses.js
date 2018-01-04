@@ -12,6 +12,13 @@ export const addExpense = (amount,description,whopaid,tripID) => {
     };
 }
 
+export const addExpenseObject = (expense,tripID) => {
+  return {
+    type: 'ADD_EXPENSEOBJECT',
+   payload:{ expense,
+    tripID}
+  };
+}
 
 
 // hack for generating passable unique ids
