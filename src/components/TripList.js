@@ -3,24 +3,39 @@ import {
   Text,
   StyleSheet,
   FlatList,
-  View
+  View,
+  ScrollView,
+  TouchableHighlight,
 } from 'react-native';
+import { connect } from 'react-redux';
+class TripList extends Component {
+  
 
-export default class TripList extends Component<{}> {
+    onTripPress = ( trip ) => {
+    this.props.navigation.navigate('Trip', { trip });
+  }; 
+  trips() {
+    return Object.keys(this.props.trips).map(key => this.props.trips[key])
+  };
   render() {
     return (
       <View>
         <Text style={styles.titleText} >A list of all the trips: </Text>
-        <FlatList
-          data={dummyTrips2}
-          renderItem={({ item }) => (
-              <Text> {item.text} </Text>
-          )}
-        />
+        <ScrollView>
+        { this.trips().map((trip) => {return <TouchableHighlight onPress={() => this.onTripPress(trip)}><Text key={trip.id}> {trip.text}</Text></TouchableHighlight>})}
+        </ScrollView>
       </View>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    trips: state.trips.trips
+  };
+};
+
+export default connect(mapStateToProps)(TripList);
 
 const dummyTrips2 = [ 
         { id: 0, isFinished: true, text: 'Bahamas' },

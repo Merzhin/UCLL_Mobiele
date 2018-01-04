@@ -28,7 +28,7 @@ class TripPage extends Component {
         this.props.navigation.navigate('NewExpense', { trip });
       } ; 
     render() {
-        const  trip = this.props.navigation.state.params.trip;
+        //const  trip = this.props.navigation.state.params.trip;
        
         console.log(trip);
         return (
