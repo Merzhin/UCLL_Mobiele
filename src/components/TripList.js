@@ -22,7 +22,7 @@ class TripList extends Component {
       <View>
         <Text style={styles.titleText} >A list of all the trips: </Text>
         <ScrollView>
-        { this.trips().map((trip) => {return <TouchableHighlight onPress={() => this.onTripPress(trip)}><Text key={trip.id}> {trip.text}</Text></TouchableHighlight>})}
+        { this.trips().map((trip) => {return <TouchableHighlight onPress={() => this.onTripPress(trip)}><Text key={trip.id}> {trip.text}</Text></TouchableHighlight>})} 
         </ScrollView>
       </View>
     );

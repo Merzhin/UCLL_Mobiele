@@ -11,12 +11,8 @@ import MainNavigator from './src/navigators/MainNavigator';
 
 class App extends Component {
   render() {
-       if (this.props.isLoggedIn) {
-        return (   
-            <MainNavigator />     
-        );
-      };
-      return <LoginPage />; 
+            return <MainNavigator />    
+
   }
 }
 

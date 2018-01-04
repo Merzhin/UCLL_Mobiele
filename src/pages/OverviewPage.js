@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView, Text, View, Button, Platform } from 'react-native';
+import { ScrollView, Text, View, Button, Platform, FlatList } from 'react-native';
 
 import {STATUS_BAR_HEIGHT} from '../constants'
 import { logout } from '../redux/actions/auth';
@@ -22,23 +22,27 @@ class OverviewPage extends Component {
             <View>
                 <ScrollView>
                     <Logo />
-                    <Text style={{ fontSize: 27 }}>
-                        {`Welcome ${this.props.username}`}
+                    <Text style={{ fontSize: 24 }}>
+                        Welkom op de Karavaan VZW app!
                     </Text>
                 </ScrollView>
-                <Button onPress={(e) => this.userLogout(e)} title="Logout" />
             </View>
         );
     }
 }
 
+const getUsers = (auth) => {
+    return auth;
+};
+
 const mapStateToProps = (state, ownProps) => {
     return {
         username: state.auth.username,
-        
+        users: state.trips,
     };
 };
- 
+
+
 const mapDispatchToProps = (dispatch) => {
     return {
         onLogout: () => { dispatch(logout()); },
