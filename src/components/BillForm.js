@@ -31,7 +31,11 @@ import Item from '../components/Item';
         this.props.onAddExpense(this.state.amount,this.state.description,this.state.whopaid,this.props.navigation.state.params.trip.id);
         this.props.navigation.goBack(null);
     }
-  
+    items() {
+     
+
+      return Object.keys(this.props.items).map(key => this.props.items[key])
+    }
   render() {
       console.log(this.props);
     
@@ -39,7 +43,12 @@ import Item from '../components/Item';
     return (
         <View>
           <View>
+          <Text>{this.props.expense.amount}</Text>
+
             <Item />
+            
+            { this.items().map((expense) => {return <Text key={expense.description}> {expense.description}</Text>})}
+
           </View>
             <View>
                 <TextInput 
@@ -66,6 +75,8 @@ import Item from '../components/Item';
   }
   const mapStateToProps = (state) => {
     return {
+      items: state.expense.item,
+      expense: state.expense
       //trips: state.trips.trips
     };
   }

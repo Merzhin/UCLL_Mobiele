@@ -47,7 +47,8 @@ class TripPage extends Component {
 
 const mapStateToProps = (state) => {
     return {
-      expenses: state.expenses.expenses
+      expenses: state.expenses.expenses,
+      
     };
   }
  

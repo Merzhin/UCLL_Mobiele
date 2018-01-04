@@ -1,12 +1,12 @@
 
  const init = {
-     id:'', item:[{ amount:'',  description: 'drank dag 1', users:['a']}]
+     id:'', amount: 5, item:[{ amount:1,  description: 'drank dag 1', user:'jan'}], betaling:[{naam:'jan', amount:1}]
   }
  
    const reducer = (state=init, action) => {
    switch(action.type) {
      case 'ADD_ITEM':
-     
+     state.amount=state.amount+action.payload.amount;
          return {...state,
           item: [...state.item, action.payload]};
          
@@ -17,8 +17,10 @@
                } 
                return t;
          });
-   
-           
+         case 'ADD_BETALING':
+         state.amount=state.amount-action.payload.amount;
+         return {...state,
+            betaling: [...state.betaling, action.payload]};
      default:
        return state;
    }

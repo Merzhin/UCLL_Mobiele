@@ -1,15 +1,27 @@
-export const addItem = (description,amount,users) => {
+export const addItem = (amount,description,user) => {
     return {
       type: 'ADD_ITEM',
       payload: {
         
-        amount,
+        amount:int(amount),
         description,
-        users
+        user
         
       }
     };
 }
+export const addBetaling = (amount,naam) => {
+  return {
+    type:'ADD_BETALING',
+    payload: {
+      naam,
+      amount:int(amount)
+      
+      
+    }
+  };
+}
+
 
 export const updateItem = (users) => {
     return {
@@ -22,6 +34,6 @@ export const updateItem = (users) => {
       }
     };
 }
-
+const int=(x) => Number.parseInt(x);
 
 

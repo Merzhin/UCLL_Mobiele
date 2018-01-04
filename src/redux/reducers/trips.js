@@ -1,6 +1,7 @@
 import { List, Map } from 'immutable';
 
  const init = {
+   
    trips: [{ id: 0, isFinished: true,  text: 'Bahamas' }]
  }
 
