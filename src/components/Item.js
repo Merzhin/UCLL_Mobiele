@@ -22,10 +22,10 @@ import PropTypes from 'prop-types';
     constructor(props){
         super(props)
         this.state = {description : '' ,
-                        amount: 1, 
-                  user: '',
-                betalingamount:1,
-              betalinguser:''}
+                      amount: 1, 
+                      user: '',
+                      betalingamount:1,
+                      betalinguser:''}
     }
 
     additem(){
@@ -80,17 +80,16 @@ import PropTypes from 'prop-types';
                   />
                   <Text>Kostprijs item</Text>
                   <TextInput 
-                  onChangeText={(text) => this.onChange( text)}
-                  value={this.state.amount}
-                 
+                    onChangeText={(text) => this.onChange( text)}
+                    value={this.state.amount}
                   />
 
                   <Picker
-  selectedValue={this.state.user}
-  onValueChange={(itemValue, itemIndex) => this.setState({user: itemValue})}>
-  <Picker.Item label="Alle" value="alle" />
-  { this.personen().map((personen) => {return <Picker.Item key={personen.naam} label={personen.naam} value={personen.naam}/> })}
-</Picker>
+                    selectedValue={this.state.user}
+                    onValueChange={(itemValue, itemIndex) => this.setState({user: itemValue})}>
+                  <Picker.Item label="Alle" value="alle" />
+                    { this.personen().map((personen) => {return <Picker.Item key={personen.naam} label={personen.naam} value={personen.naam}/> })}
+                  </Picker>
               
               <TouchableHighlight onPress={() => this.additem()}>
                 <Text>Add item</Text>
@@ -122,7 +121,7 @@ import PropTypes from 'prop-types';
     }
     const mapStateToProps = (state) => {
       return {
-     personen: state.personen.personen
+        personen: state.personen.personen
       };
     }
    
@@ -130,7 +129,6 @@ import PropTypes from 'prop-types';
         return {
             onAddItem: (amount,description,user) => { dispatch(addItem(amount,description,user)); },
             onAddBetaling: (amount,user) => { dispatch(addBetaling(amount,user)); }
-            
           }
       }
       

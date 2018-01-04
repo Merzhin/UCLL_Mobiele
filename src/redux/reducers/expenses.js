@@ -5,19 +5,7 @@
 
   const reducer = (state=init, action) => {
   switch(action.type) {
-    case 'ADD_EXPENSE':
-    
-        return {...state,
-         expenses: [...state.expenses,action.payload]};
-        
-    case 'TOGGLE_FINISH_TRIP':
-        return state.map(t => {
-            if(t.get('id') === action.payload) {
-                return t.update('isFinished', isFinished => !isFinished);
-              } 
-              return t;
-        });
-        case 'ADD_EXPENSEOBJECT':
+    case 'ADD_EXPENSEOBJECT':
         
       var mymap=new Map();
 

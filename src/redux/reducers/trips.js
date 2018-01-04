@@ -9,8 +9,10 @@ import { List, Map } from 'immutable';
   switch(action.type) {
     case 'ADD_TRIP':
     
-        return {...state,
-         trips: [...state.trips,action.payload]};
+        return {
+          ...state,
+          trips: [...state.trips,action.payload]
+        };
         
     case 'TOGGLE_FINISH_TRIP':
         return state.map(t => {

@@ -20,10 +20,13 @@ export const TripStack = StackNavigator({
         Trip: {
             screen: TripPage,
             navigationOptions: {
-                title: 'trip'  //({ state }) => `${state.params.text}`
+                title: 'Trip Page'  //({ state }) => `${state.params.text}`
             }
         }, 
         NewExpense: {
             screen: BillForm,
+            navigationOptions: {
+                title: 'Add Expense'
+            }
         }
 });

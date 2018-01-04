@@ -18,7 +18,7 @@ import { addTrip } from '../redux/actions/trips';
  class Trips extends Component {
     constructor(props){
         super(props);
-        this.state = {locatie : 'eee'}
+        this.state = {locatie : ''}
     }
 
     onTripPress = ( trip ) => {
@@ -40,6 +40,7 @@ import { addTrip } from '../redux/actions/trips';
         <View>
             <View>
                 <TextInput 
+                  placeholder='Enter Location'
                   onChangeText={(text) => this.setState({locatie : text})}
                   value={this.state.locatie}
                 />

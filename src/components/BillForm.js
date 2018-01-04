@@ -9,8 +9,7 @@ import {
   SectionList,
   FlatList,
   TouchableHighlight,
-  Alert,
-  View
+  View,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { addExpense, addExpenseObject } from '../redux/actions/expenses';
@@ -48,7 +47,8 @@ import Item from '../components/Item';
     
       
     return (
-        <View>
+        <ScrollView>
+          
           <View>
           <Text>{this.props.expense.amount}</Text>
 
@@ -78,7 +78,8 @@ import Item from '../components/Item';
             </TouchableHighlight>
               
             </View>
-      </View>
+            
+      </ScrollView>
       );
     }
   }
