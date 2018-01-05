@@ -7,7 +7,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LoginPage from './src/pages/LoginPage';
-import { MainNavigator } from './src/navigators/MainNavigator';
+import MainNavigator  from './src/navigators/MainNavigator';
 
 class App extends Component {
   render() {

@@ -13,6 +13,7 @@ import Bills from '../components/BillForm';
 class TripPage extends Component {
     
     trips() {
+
         const expensess = [];
         if(this.props.expenses!=null){
             this.props.expenses.forEach(
