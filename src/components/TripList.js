@@ -12,7 +12,7 @@ class TripList extends Component {
   
 
     onTripPress = ( trip ) => {
-    this.props.navigation.navigate('Trip', { trip });
+    this.navigation.navigate('Trip', { trip });
   }; 
   trips() {
     return Object.keys(this.props.trips).map(key => this.props.trips[key])

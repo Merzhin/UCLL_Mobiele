@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView } from 'react-native';
 import Trips from '../components/TripList';
+import TripsNavigator from '../navigators/TripsNavigator';
 
 class TripPage extends Component {
     
     render() {
         return (
-            <ScrollView>
-                <Trips navigation={this.props.navigation}/>
-            </ScrollView>
+            <TripsNavigator />
         );
     }
 }

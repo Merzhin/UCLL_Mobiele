@@ -14,6 +14,7 @@ import TripList from "../components/TripList";
 class TripPage extends Component {
     
     trips() {
+
         const expensess = [];
         if(this.props.expenses!=null){
         this.props.expenses.forEach(function(item) {
@@ -28,7 +29,7 @@ class TripPage extends Component {
         this.props.navigation.navigate('NewExpense', { trip });
       } ; 
     render() {
-        //const  trip = this.props.navigation.state.params.trip;
+        const  trip = this.props.navigation.state.params.trip;
        
         console.log(trip);
         return (
