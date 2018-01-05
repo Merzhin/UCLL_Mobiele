@@ -10,25 +10,29 @@ import Trips from '../components/Trips';
 import BillList from '../components/BillList';
 import BillTotals from '../components/BillTotals';
 import Bills from '../components/BillForm';
-import TripList from "../components/TripList";
 class TripPage extends Component {
     
     trips() {
         const expensess = [];
         if(this.props.expenses!=null){
-        this.props.expenses.forEach(function(item) {
-            if(item.tripID==this.props.navigation.state.params.trip.id){
-                expensess.push(item);
-            }
-        }, this);}
+            this.props.expenses.forEach(
+                function(item) {
+                    if(item.tripID==this.props.navigation.state.params.trip.id){
+                        expensess.push(item);
+                    }
+                }
+            , this);
+        }
         return Object.keys(expensess).map(key => expensess[key])
       }
 
     newExpense = ( trip ) => {
         this.props.navigation.navigate('NewExpense', { trip });
-      } ; 
+    } ;
+    
+
     render() {
-        //const  trip = this.props.navigation.state.params.trip;
+        const trip = this.props.navigation.state.params.trip;
        
         console.log(trip);
         return (
@@ -36,7 +40,14 @@ class TripPage extends Component {
             <ScrollView style={{ padding: 20 }}>
                 <Text>{trip.text}</Text>
                
-                { this.trips().map((expense) => {return <TouchableHighlight onPress={() => this.onTripPress(trip)}><Text key={expense.id}> {expense.description}</Text></TouchableHighlight>})}
+                { this.trips().map((expense) => {
+                    return (
+                        <TouchableHighlight onPress={() => this.onTripPress(trip)}>
+                          <Text key={expense.id}> {expense.description}</Text>
+                        </TouchableHighlight>
+                    );   
+                     
+                })}
                 
                 <Button onPress={() => this.newExpense(trip)} title='New Expense'/>
             </ScrollView>

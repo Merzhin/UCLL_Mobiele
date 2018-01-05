@@ -7,7 +7,7 @@
   switch(action.type) {
     case 'ADD_EXPENSEOBJECT':
         
-      var mymap=new Map();
+      var mymap = new Map();
 
 action.payload.expense.item.forEach(function(x) {
             if(mymap.has(x.user)){

@@ -22,7 +22,7 @@ import { addTrip } from '../redux/actions/trips';
     }
 
     onTripPress = ( trip ) => {
-      this.props.navigation.navigate('Trip', { trip });
+      this.props.navigation.navigate('TripDetails', { trip });
     } ; 
 
   trips() {
@@ -44,16 +44,21 @@ import { addTrip } from '../redux/actions/trips';
                   onChangeText={(text) => this.setState({locatie : text})}
                   value={this.state.locatie}
                 />
-            
-            <TouchableHighlight onPress={() => this.addtrip()}>
-              <Text>Add trip</Text>
-            </TouchableHighlight>
+                <TouchableHighlight onPress={() => this.addtrip()}>
+                  <Text>Add trip</Text>
+                </TouchableHighlight>
               
             </View>
       <View>
     
         <Text style={styles.titleText} >A list of all the trips: </Text>
-        { this.trips().map((trip) => {return <TouchableHighlight onPress={() => this.onTripPress(trip)}><Text key={trip.id}> {trip.text}</Text></TouchableHighlight>})}
+        { this.trips().map((trip) => {
+          return (
+            <TouchableHighlight onPress={() => this.onTripPress(trip)}>
+              <Text key={trip.id}> {trip.text}</Text>
+            </TouchableHighlight>
+         );
+        })}
       </View>
       </View>
     );
