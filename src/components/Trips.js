@@ -1,21 +1,12 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  StyleSheet,
-  TouchableHighlight,
-  View
-} from 'react-native';
+import { Text, StyleSheet, TouchableHighlight, View } from 'react-native';
 import { connect } from 'react-redux';
 
  class Trips extends Component {
     constructor(props) {
         super(props);
-        this.state = {location: '' };
+        this.state = { location: '' };
     }
-
-    onTripPress = (trip) => {
-      this.props.navigation.navigate('TripDetails', { trip });
-    } ; 
 
   trips() {
       return Object.keys(this.props.trips).map(key => this.props.trips[key]);
@@ -30,7 +21,9 @@ import { connect } from 'react-redux';
        <Text style={styles.titleText} >A list of all the trips: </Text>
         { this.trips().map((trip) => {
           return (
-            <TouchableHighlight onPress={() => this.onTripPress(trip)}>
+            <TouchableHighlight 
+              onPress={() => this.props.navigation.navigate('TripDetails', { trip })}
+            >
               <Text key={trip.id}> {trip.text}</Text>
             </TouchableHighlight>
          );

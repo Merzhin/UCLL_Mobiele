@@ -1,51 +1,32 @@
 import React, { Component } from 'react';
-import { List, Map } from 'immutable';
-import {
-  Text,
-  TextInput,
-  StyleSheet,
-  ScrollView,
-  Button,
-  SectionList,
-  FlatList,
-  TouchableHighlight,
-  View,
-} from 'react-native';
+import { Text, TextInput, ScrollView, TouchableHighlight, View, } from 'react-native';
 import { connect } from 'react-redux';
 import { addExpense, addExpenseObject } from '../redux/actions/expenses';
-import { NavigationActions } from 'react-navigation';
 import Item from '../components/Item';
+
  class BillForm extends Component {
-    constructor(props){
-        super(props)
-        this.state = {description : '' ,
+    constructor(props) {
+        super(props);
+        this.state = { description: '',
                       amount: '',
-                      whopaid: ''}
+                      whopaid: '' };
     }
 
-    
-
-
-    addexpense(){
-        this.props.onAddExpense(this.state.amount,this.state.description,this.state.whopaid,this.props.navigation.state.params.trip.id);
+    addexpense() {
+        this.props.onAddExpense(this.state.amount, this.state.description, this.state.whopaid, this.props.navigation.state.params.trip.id);
         this.props.navigation.goBack(null);
     }
-    addexpenseobject(){
-      this.props.onAddExpenseObject(this.props.expense,this.props.navigation.state.params.trip.id);
+    addexpenseobject() {
+      this.props.onAddExpenseObject(this.props.expense, this.props.navigation.state.params.trip.id);
       this.props.navigation.goBack(null);
   }
     items() {
-     
-
-      return Object.keys(this.props.items).map(key => this.props.items[key])
+      return Object.keys(this.props.items).map(key => this.props.items[key]);
     }
 
-
-   
   render() {
       console.log(this.props);
-    
-      
+     
     return (
         <ScrollView>
           
@@ -54,7 +35,7 @@ import Item from '../components/Item';
 
             <Item />
             
-            { this.items().map((expense) => {return <Text key={expense.description}> {expense.description}</Text>})}
+            { this.items().map((expense) => { return <Text key={expense.description}> {expense.description}</Text>})}
             <TouchableHighlight onPress={() => this.addexpenseobject()}>
               <Text>Add expenseobject</Text>
             </TouchableHighlight>
@@ -83,18 +64,19 @@ import Item from '../components/Item';
       );
     }
   }
+
   const mapStateToProps = (state) => {
     return {
       items: state.expense.item,
       expense: state.expense
       //trips: state.trips.trips
     };
-  }
+  };
  
   const mapDispatchToProps = (dispatch) => {
       return {
           onAddExpense: (amount,description,whopaid,tripID) => { dispatch(addExpense(amount,description,whopaid,tripID)); },
           onAddExpenseObject: (expense,tripID) => { dispatch(addExpenseObject(expense,tripID)); }
-    }
-  }
+    };
+  };
   export default connect(mapStateToProps, mapDispatchToProps)(BillForm);

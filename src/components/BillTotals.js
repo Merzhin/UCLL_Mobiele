@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-} from 'react-native';
+import { StyleSheet, } from 'react-native';
 import { Table, Rows, Row } from 'react-native-table-component';
 
 export default class tableView extends Component {

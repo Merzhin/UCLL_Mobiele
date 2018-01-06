@@ -1,44 +1,20 @@
 import React, { Component } from 'react';
-import { List, Map } from 'immutable';
-import {
-  Text,
-  TextInput,
-  StyleSheet,
-  ScrollView,
-  Button,
-  SectionList,
-  FlatList,
-  TouchableHighlight,
-  Alert,
-  View,
-  Picker
-} from 'react-native';
+import { Text, TextInput, TouchableHighlight, View, Picker } from 'react-native';
 import { connect } from 'react-redux';
 import { addItem } from '../redux/actions/expense';
 import { addBetaling } from '../redux/actions/expense';
 import { NavigationActions } from 'react-navigation';
 import PropTypes from 'prop-types';
  class Item extends Component {
-    constructor(props){
-        super(props)
-        this.state = {description : '' ,
+    constructor(props) {
+        super(props);
+        this.state = { description: '',
                       amount: 1, 
                       user: '',
-                      betalingamount:1,
-                      betalinguser:''}
+                      betalingamount: 1,
+                      betalinguser: '' };
     }
 
-    additem(){
-        this.props.onAddItem(this.state.amount,this.state.description,this.state.user);
-        
-      // this.props.navigation.goBack(null);
-    }
-
-    addbetaling(){
-      this.props.onAddBetaling(this.state.betalingamount,this.state.betalinguser);
-      
-    // this.props.navigation.goBack(null);
-  }
     onChange(text) {
       let newText = '';
       let numbers = '0123456789';
@@ -60,6 +36,18 @@ import PropTypes from 'prop-types';
         }
     }   
     this.setState({betalingamount: newText})
+}
+
+additem() {
+  this.props.onAddItem(this.state.amount,this.state.description,this.state.user);
+  
+// this.props.navigation.goBack(null);
+}
+
+addbetaling() {
+  this.props.onAddBetaling(this.state.betalingamount,this.state.betalinguser);
+  
+// this.props.navigation.goBack(null);
 }
 
   personen() {
@@ -133,5 +121,3 @@ import PropTypes from 'prop-types';
       }
       
     export default connect(mapStateToProps, mapDispatchToProps)(Item);
-
- 

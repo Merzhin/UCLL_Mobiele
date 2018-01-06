@@ -17,32 +17,25 @@ class TripPage extends Component {
             , this);
         }
         return Object.keys(expensess).map(key => expensess[key])
-      }
-
-    newExpense = ( trip ) => {
-        this.props.navigation.navigate('NewExpense', { trip });
-    } ;
-    
+      }   
 
     render() {
         const trip = this.props.navigation.state.params.trip;
-       
-        console.log(trip);
         return (
-            
             <ScrollView style={{ padding: 20 }}>
                 <Text>{trip.text}</Text>
-               
                 { this.trips().map((expense) => {
                     return (
                         <TouchableHighlight onPress={() => this.onTripPress(trip)}>
                           <Text key={expense.id}> {expense.description}</Text>
                         </TouchableHighlight>
                     );   
-                     
                 })}
-                
-                <Button onPress={() => this.newExpense(trip)} title='New Expense'/>
+                <Button 
+                    onPress={() => this.props.navigation.navigate('NewExpense', { trip })} 
+                    title='New Expense'
+                    navigation={this.props.navigation}
+                />
             </ScrollView>
         );
     }
@@ -51,7 +44,6 @@ class TripPage extends Component {
 const mapStateToProps = (state) => {
     return {
       expenses: state.expenses.expenses,
-      
     };
 };
  
