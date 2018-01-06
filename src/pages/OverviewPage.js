@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { ScrollView, Text, View, Button, Platform, FlatList } from 'react-native';
-
-import {STATUS_BAR_HEIGHT} from '../constants'
-import { logout } from '../redux/actions/auth';
+import { ScrollView, Text, View, } from 'react-native';
 import Logo from '../components/Logo';
-import Currencies from '../components/Currencies';
-import Trips from '../components/Trips';
-import BillList from '../components/BillList';
-import BillTotals from '../components/BillTotals';
+import Currency from '../components/Currency';
 
-import TripList from "../components/TripList";
-import Currency  from "../components/Currency";
 class OverviewPage extends Component {
     userLogout(e) {
         this.props.onLogout();
@@ -21,7 +12,6 @@ class OverviewPage extends Component {
         return (
             <View>
                 <ScrollView>
-                    <Logo />
                     <Text style={{ fontSize: 24 }}>
                         Welkom op de Karavaan VZW app!
                     </Text>
@@ -34,18 +24,5 @@ class OverviewPage extends Component {
         );
     }
 }
-
-const getUsers = (auth) => {
-    return auth;
-};
-
-const mapStateToProps = (state, ownProps) => {
-    return {
-        username: state.auth.username,
-        users: state.trips,
-    };
-};
-
-
  
-export default connect(mapStateToProps)(OverviewPage);
+export default OverviewPage;

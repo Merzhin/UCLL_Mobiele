@@ -1,6 +1,4 @@
-import { TabNavigator, StackNavigator } from 'react-navigation';
-import MainPage from '../pages/MainPage';
-import TripDetails from '../pages/TripDetails'
+import { TabNavigator } from 'react-navigation';
 import OverviewPage from '../pages/OverviewPage';
 import BillsPage from '../pages/BillsPage';
 import TripStack from './TripsNavigator';

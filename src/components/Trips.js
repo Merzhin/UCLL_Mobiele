@@ -1,35 +1,24 @@
 import React, { Component } from 'react';
-import { List, Map } from 'immutable';
 import {
   Text,
-  TextInput,
   StyleSheet,
-  ScrollView,
-  Button,
-  SectionList,
-  FlatList,
   TouchableHighlight,
-  Alert,
   View
 } from 'react-native';
 import { connect } from 'react-redux';
-import { addTrip } from '../redux/actions/trips';
 
  class Trips extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {locatie : ''}
+        this.state = {location: '' };
     }
 
-    onTripPress = ( trip ) => {
+    onTripPress = (trip) => {
       this.props.navigation.navigate('TripDetails', { trip });
     } ; 
 
   trips() {
-      return Object.keys(this.props.trips).map(key => this.props.trips[key])
-    }
-    addtrip(){
-        this.props.onAddTrip(this.state.locatie);
+      return Object.keys(this.props.trips).map(key => this.props.trips[key]);
     }
   
   render() {
@@ -37,21 +26,8 @@ import { addTrip } from '../redux/actions/trips';
     
       
     return (
-        <View>
-            <View>
-                <TextInput 
-                  placeholder='Enter Location'
-                  onChangeText={(text) => this.setState({locatie : text})}
-                  value={this.state.locatie}
-                />
-                <TouchableHighlight onPress={() => this.addtrip()}>
-                  <Text>Add trip</Text>
-                </TouchableHighlight>
-              
-            </View>
       <View>
-    
-        <Text style={styles.titleText} >A list of all the trips: </Text>
+       <Text style={styles.titleText} >A list of all the trips: </Text>
         { this.trips().map((trip) => {
           return (
             <TouchableHighlight onPress={() => this.onTripPress(trip)}>
@@ -60,25 +36,17 @@ import { addTrip } from '../redux/actions/trips';
          );
         })}
       </View>
-      </View>
     );
   }
 }
-
-
 
 const mapStateToProps = (state) => {
   return {
     trips: state.trips.trips
   };
-}
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onAddTrip: (locatie) => { dispatch(addTrip(locatie)); }
-    }
-  }
-  
-export default connect(mapStateToProps, mapDispatchToProps)(Trips);
+};
+
+export default connect(mapStateToProps)(Trips);
 
 const styles = StyleSheet.create({
 

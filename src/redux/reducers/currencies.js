@@ -15,11 +15,11 @@ export const reducer = (state='', action) =>
 
 const selectCurrencyWithBase = ( base ) => 
 {
-    Object.entries(currencies).map(( item ) => 
+    /*Object.entries(currencies).map(( item ) => 
     {
         if (item.base === base) { return item; }
     }
-    );
+    );*/
     return '';
   
 } 

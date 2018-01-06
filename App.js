@@ -5,20 +5,20 @@
  */
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import LoginPage from './src/pages/LoginPage';
-import MainNavigator  from './src/navigators/MainNavigator';
+import { View, Text, TextInput, TouchableHighlight } from 'react-native';
+import Logo from './src/components/Logo';
+import MainNavigator from './src/navigators/MainNavigator';
+
 
 class App extends Component {
   render() {
-            return <MainNavigator />
+    return (
+      <View style={{ flex: 1 }}>
+        <Logo />
+        <MainNavigator />
+    </View>
+    );
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-      isLoggedIn: state.auth.isLoggedIn
-  };
-};
-
-export default connect(mapStateToProps)(App);
+export default App;

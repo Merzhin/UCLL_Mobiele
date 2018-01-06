@@ -63,7 +63,7 @@ class Currency extends Component {
     {
         
         console.log(this.props);
-        console.log(this.props.selectCurrency(this.props.base));
+        //console.log(this.props.selectCurrency(this.props.base));
         
         return (
             <View>
