@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView, Text, TouchableHighlight, View, Button } from 'react-native';
+import { ScrollView, Text, TouchableHighlight, Button } from 'react-native';
 
-import { addExpense } from '../redux/actions/expenses';
-import { logout } from '../redux/actions/auth';
-import Logo from '../components/Logo';
-import Currencies from '../components/Currencies';
-import Trips from '../components/Trips';
-import BillList from '../components/BillList';
-import BillTotals from '../components/BillTotals';
-import Bills from '../components/BillForm';
 class TripPage extends Component {
     
     trips() {
 
         const expensess = [];
-        if(this.props.expenses!=null){
+        if (this.props.expenses!=null) {
             this.props.expenses.forEach(
-                function(item) {
-                    if(item.tripID==this.props.navigation.state.params.trip.id){
+                function (item) {
+                    if (item.tripID === this.props.navigation.state.params.trip.id) {
                         expensess.push(item);
                     }
                 }
@@ -61,12 +53,6 @@ const mapStateToProps = (state) => {
       expenses: state.expenses.expenses,
       
     };
-  }
+};
  
-  const mapDispatchToProps = (dispatch) => {
-      return {
-          
-      }
-    }
- 
-export default connect(mapStateToProps, mapDispatchToProps)(TripPage);
+export default connect(mapStateToProps)(TripPage);

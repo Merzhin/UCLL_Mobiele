@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { ScrollView } from 'react-native';
 import Trips from '../components/Trips';
 

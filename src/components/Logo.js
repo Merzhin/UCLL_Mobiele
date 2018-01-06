@@ -3,7 +3,6 @@ import {
   Image
 } from 'react-native';
 
-
 export default class Logo extends Component {
   render() {
     return (
