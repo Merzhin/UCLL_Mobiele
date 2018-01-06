@@ -14,7 +14,7 @@ export class AddTripPage extends Component {
             <ScrollView>
                 <TextInput 
                   placeholder='Enter Location'
-                  onChangeText={(text) => this.setState({location: text })}
+                  onChangeText={(text) => this.setState({ location: text })}
                 />
                 <TouchableHighlight onPress={() => this.addtrip()}>
                   <Text>Add trip</Text>
