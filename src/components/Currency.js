@@ -77,6 +77,7 @@ class Currency extends Component {
             rates = this.props.JPY.rates;
         }
 
+        const arrayOfRates = Object.entries(this.state.rates);
         return (
             <View>
                     <TouchableHighlight onPress={() => {  this.getRates(); this.setState({modalVisibility:true});}}>
@@ -86,7 +87,12 @@ class Currency extends Component {
                     <Modal isVisible={this.state.modalVisibility}>
                         <View style={ styles.modalContent }>
                             <Text style={{fontSize: 20, marginBottom: 10}}>Currency conversion!</Text>  
-                            {this.createConversionRateList()}
+                            {
+                                arrayOfRates.map(( item, key ) =>
+                                (
+                                    <Text>{item[0]} : {item[1]}</Text>
+                                ))
+                            }
                             <TouchableHighlight onPress={() => {this.setState({modalVisibility:false})}}>
                                 <View style={styles.button}>
                                     <Text>Close</Text>
