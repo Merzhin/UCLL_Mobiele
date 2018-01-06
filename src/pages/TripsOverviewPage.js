@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Button } from 'react-native';
 import Trips from '../components/Trips';
 
 class TripsOverviewPage extends Component {
@@ -7,6 +7,11 @@ class TripsOverviewPage extends Component {
         return (
             <ScrollView>
                 <Trips navigation={this.props.navigation} />
+                <Button 
+                    title='Add a new trip' 
+                    onPress={() => this.props.navigation.navigate('AddTrip')} 
+                    navigation={this.props.navigation}
+                />
             </ScrollView>
         );
     }
