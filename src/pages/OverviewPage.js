@@ -11,7 +11,7 @@ import BillList from '../components/BillList';
 import BillTotals from '../components/BillTotals';
 
 import TripList from "../components/TripList";
-import { Currency } from "../components/Currency";
+import Currency  from "../components/Currency";
 class OverviewPage extends Component {
     userLogout(e) {
         this.props.onLogout();
@@ -25,6 +25,10 @@ class OverviewPage extends Component {
                     <Text style={{ fontSize: 24 }}>
                         Welkom op de Karavaan VZW app!
                     </Text>
+                    <Text>
+                        Currencytest : 
+                    </Text>
+                    <Currency base={'USD'} amount={'2'} /> 
                 </ScrollView>
             </View>
         );

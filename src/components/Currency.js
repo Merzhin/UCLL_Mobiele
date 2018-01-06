@@ -1,55 +1,124 @@
 import React, { Component } from 'react';
 import Modal from 'react-native-modal';
-import { Text, TouchableHighlight, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { Text, TouchableHighlight, TouchableOpacity, View, StyleSheet, NetInfo, TextInput } from 'react-native';
+import { connect } from 'react-redux';
+import { getCurrencyDataFor } from '../redux/actions/currencies';
 
-export class Currency extends Component {
+class Currency extends Component {
     constructor(props){
         super(props)
         this.state = {
             text: '1',
             rates: {},
-            modalVisibility:false
+            modalVisibility:false,
+            overrideModalVisibility: false
 
         }
     }
  getRates () {
-     fetch('https://api.fixer.io/latest?base=' + this.props.base, {method: "GET"})
-     .then((response) => response.json())
-     .then((responseData) => {
-            this.setState({rates: responseData.rates});
-        })
-        .done();  
+    NetInfo.isConnected.fetch().then(isConnected => 
+        {
+            if (isConnected) 
+            {
+                fetch('https://api.fixer.io/latest?base=' + this.props.base, {method: "GET"})
+                .then((response) => response.json())
+                .then((responseData) => {
+                    this.setState({rates: responseData.rates});
+                })
+                .done();  
+            }
+        });
     }
 
+    createConversionRateList() {
+        return Object.keys(this.state.rates).forEach(currency => {
+            console.log(this.state.rates[currency] * this.props.amount);
+            return (
+                <Text>{currency} : { this.state.rates[currency] * this.props.amount } </Text>
+            );
+           
+        }
+        )
     
+    }
 
-    
-    render() {
-        console.log(this.props);
-      return (
-        <View>
-                <TouchableHighlight onPress={() => {  this.getRates(); this.setState({modalVisibility:true});}}>
-                    <Text>{this.props.amount} {this.props.base} </Text>
-                </TouchableHighlight>
-                <Modal isVisible={this.state.modalVisibility}>
-                    <View style={ styles.modalContent }>
-                        <Text style={{fontSize: 20, marginBottom: 10}}>Currency conversion!</Text>
-                         {<Text>USD: { this.state.rates.USD * this.props.amount } </Text>}
-                         {<Text>EUR: { this.state.rates.EUR * this.props.amount } </Text>}
-                         {<Text>GBP: { this.state.rates.GBP * this.props.amount } </Text>}
-                         {<Text>JPY: { this.state.rates.JPY * this.props.amount } </Text>}
-                        <TouchableHighlight onPress={() => {this.setState({modalVisibility:false}); console.log(this.state.rates)}}>
-                            <View style={styles.button}>
-                                <Text>Close</Text>
-                            </View>
-                        </TouchableHighlight>
+    createConversionRateOverride() {
+        /*var USDtemp = {...this.state.rates.USD};
+        var EURtemp = {...this.state.rates.EUR};
+        var GBPtemp = {...this.state.rates.GBP};
+        var JPYtemp = {...this.state.rates.JPY}; */
+        return (
+            <View>
+                <Text style={{fontSize: 20, marginBottom: 10}}>Change the values to override</Text>
+                <TextInput onChangeText={(text) => this.setState({USDtemp : text})} value={this.state.rates.USD} placeholder={String(this.state.rates.USD)}/>
+                <TextInput onChangeText={(text) => this.setState({EURtemp : text})} value={this.state.rates.EUR} placeholder={String(this.state.rates.EUR)}/>
+                <TextInput onChangeText={(text) => this.setState({GBPtemp : text})} value={this.state.rates.GBP} placeholder={String(this.state.rates.GBP)}/>
+                <TextInput onChangeText={(text) => this.setState({JPYtemp : text})} value={this.state.rates.JPY} placeholder={String(this.state.rates.JPY)}/>
+                <TouchableHighlight onPress={() => {this.setState({overrideModalVisibility:false})}}>
+                    <View style={styles.button}>
+                        <Text>Close</Text>
                     </View>
-                </Modal>
-                
-        </View>
-        );
-      }
+                </TouchableHighlight>
+            </View>
+        )
     }
+    render() 
+    {
+        if (this.props.base === "USD") {
+            rates = this.props.USD.rates;
+            console.log("stuff");
+            console.log(rates);
+            console.log(this.props.USD.rates);
+        } else if (this.props.base === "EUR") {
+            rates = this.props.EUR.rates;
+        } else if (this.props.base === "GBP") {
+            rates = this.props.GBP.rates;
+        } else if (this.props.base === "JPY") {
+            rates = this.props.JPY.rates;
+        }
+
+        return (
+            <View>
+                    <TouchableHighlight onPress={() => {  this.getRates(); this.setState({modalVisibility:true});}}>
+                        <Text>{this.props.amount} {this.props.base} </Text>
+                    </TouchableHighlight>
+
+                    <Modal isVisible={this.state.modalVisibility}>
+                        <View style={ styles.modalContent }>
+                            <Text style={{fontSize: 20, marginBottom: 10}}>Currency conversion!</Text>  
+                            {this.createConversionRateList()}
+                            <TouchableHighlight onPress={() => {this.setState({modalVisibility:false})}}>
+                                <View style={styles.button}>
+                                    <Text>Close</Text>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight onPress={() => {this.setState({overrideModalVisibility:true})}}>
+                                <View style={styles.button}>
+                                    <Text>Override Rates</Text>
+                                </View>
+                            </TouchableHighlight>
+                            <Modal isVisible={this.state.overrideModalVisibility}>
+                                <View style={styles.modalContent}>
+                                    {this.createConversionRateOverride()}
+                                </View>
+                            </Modal>
+                        </View>
+                    </Modal>
+                    
+            </View>
+        );
+    }
+}
+
+const mapStateToProps = (state) => {
+    return { 
+        USD: state.USD,
+        JPY: state.JPY,
+        EUR: state.EUR,
+        GBP: state.GBP
+    }
+}
+export default connect(mapStateToProps)(Currency);
 
 const styles = StyleSheet.create({
         container: {
@@ -74,7 +143,7 @@ const styles = StyleSheet.create({
           borderRadius: 4,
           borderColor: 'rgba(0, 0, 0, 0.1)',
         }
-    });
+});
 
     
     
