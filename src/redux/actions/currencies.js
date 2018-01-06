@@ -3,7 +3,7 @@ export const getCurrencyDataFor = (currencyType) => {
       type: 'GET_CURRENCY_DATA_FOR',
       payload: 
       {
-        base: currencyType
+        currencyObject: currencyObject
       }
     };
 }

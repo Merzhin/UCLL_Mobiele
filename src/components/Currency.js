@@ -33,9 +33,9 @@ class Currency extends Component {
     createConversionRateList() {
         return Object.keys(this.state.rates).forEach(currency => {
             console.log(this.state.rates[currency] * this.props.amount);
-            return (
-                <Text>{currency} : { this.state.rates[currency] * this.props.amount } </Text>
-            );
+            var out = (<Text>{currency} : { this.state.rates[currency] * this.props.amount } </Text>);
+            console.log(out); 
+            return out;
            
         }
         )
@@ -64,18 +64,7 @@ class Currency extends Component {
     }
     render() 
     {
-        if (this.props.base === "USD") {
-            rates = this.props.USD.rates;
-            console.log("stuff");
-            console.log(rates);
-            console.log(this.props.USD.rates);
-        } else if (this.props.base === "EUR") {
-            rates = this.props.EUR.rates;
-        } else if (this.props.base === "GBP") {
-            rates = this.props.GBP.rates;
-        } else if (this.props.base === "JPY") {
-            rates = this.props.JPY.rates;
-        }
+        
 
         return (
             <View>
@@ -112,11 +101,12 @@ class Currency extends Component {
 
 const mapStateToProps = (state) => {
     return { 
-        USD: state.USD,
-        JPY: state.JPY,
-        EUR: state.EUR,
-        GBP: state.GBP
+        currencyObject: state.selectCurrency
     }
+}
+
+function matchDispatchToProps(dispatch){
+    return bindActionCreators({selectCurrency: selectCurrency}, dispatch);
 }
 export default connect(mapStateToProps)(Currency);
 

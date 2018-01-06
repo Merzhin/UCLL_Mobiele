@@ -1,26 +1,17 @@
-export const currenciesConversionReducer = (state='', action) => 
+import { getCurrencyDataFor } from "../actions/currencies";
+
+export const selectCurrency = (state='', action) => 
 {
     console.log(action.payload);
     switch(action.type) 
     {
-        case 'GET_CURRENCY_DATA_FOR' : 
-            switch(action.payload.base) 
-            {
-                case 'USD': 
-                    return USD;
-                case 'EUR': 
-                    return EUR;                
-                case 'JPY' :
-                    return JPY;
-                case 'GBP' : 
-                    return GBP;
-                default :
-                    return state;
-            }
+        case 'SELECT_CURRENCY' : 
+            return action.payload.currencyObject;
         break;
         default : return state; 
     };
-}
+};
+
 
 
 export const USD = () =>

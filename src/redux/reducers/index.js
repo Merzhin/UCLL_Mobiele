@@ -4,7 +4,8 @@ import trips from './trips';
 import expenses from './expenses';
 import expense from './expense';
 import personen from './personen';
-import { currenciesConversionReducer, USD, JPY, EUR, GBP } from './currenciesConversionReducer';
+import { selectCurrency } from './currenciesConversionReducer';
+import allCurrencies from './allCurrencies';
 
 export default combineReducers({
     auth,
@@ -12,9 +13,6 @@ export default combineReducers({
     expenses,
     expense,
     personen,
-    currenciesConversionReducer,
-    USD:USD, 
-    JPY:JPY, 
-    EUR:EUR, 
-    GBP:GBP
+    selectCurrency,
+    allCurrencies
 });
