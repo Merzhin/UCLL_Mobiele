@@ -1,9 +1,9 @@
-export const getCurrencyDataFor = (currencyType) => {
+export const selectCurrency = (currencyType) => {
     return {
-      type: 'GET_CURRENCY_DATA_FOR',
+      type: 'SELECT_CURRENCY',
       payload: 
       {
-        currencyObject: currencyObject
+        base: currencyType
       }
     };
 }

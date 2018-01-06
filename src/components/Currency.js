@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Modal from 'react-native-modal';
 import { Text, TouchableHighlight, TouchableOpacity, View, StyleSheet, NetInfo, TextInput } from 'react-native';
 import { connect } from 'react-redux';
-import { getCurrencyDataFor } from '../redux/actions/currencies';
+import { bindActionCreators } from 'redux';
+import { selectCurrency } from '../redux/actions/currencies';
 
 class Currency extends Component {
     constructor(props){
@@ -32,7 +33,7 @@ class Currency extends Component {
 
     createConversionRateList() {
         const arrayOfRates = Object.entries(this.state.rates);
-        return arrayOfRates.map(( item, key ) =>
+        return arrayOfRates.map(( item ) =>
         (
             <Text>{item[0]} : {item[1]}</Text>
         ));
@@ -61,7 +62,8 @@ class Currency extends Component {
     render() 
     {
         
-        console.log(this.props.currency);
+        console.log(this.props);
+        console.log(this.props.selectCurrency(this.props.base));
         
         return (
             <View>
@@ -100,14 +102,16 @@ class Currency extends Component {
 
 const mapStateToProps = (state) => {
     return { 
-        currency: state.selectCurrency
+        currencies: state.allCurrencies
     }
 }
 
-function matchDispatchToProps(dispatch){
-    return bindActionCreators({selectCurrency: selectCurrency}, dispatch);
-}
-export default connect(mapStateToProps)(Currency);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        selectCurrency: (base) => { dispatch(selectCurrency(base)); }
+    }
+  }
+export default connect(mapStateToProps, mapDispatchToProps)(Currency);
 
 const styles = StyleSheet.create({
         container: {
