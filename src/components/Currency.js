@@ -58,21 +58,26 @@ class Currency extends Component {
             </View>
         )
     }
-    render() 
-    {
-        if (this.props.base === "USD") {
-            rates = this.props.USD.rates;
-            console.log("stuff");
-            console.log(rates);
-            console.log(this.props.USD.rates);
-        } else if (this.props.base === "EUR") {
-            rates = this.props.EUR.rates;
-        } else if (this.props.base === "GBP") {
-            rates = this.props.GBP.rates;
-        } else if (this.props.base === "JPY") {
-            rates = this.props.JPY.rates;
+    render() {
+        switch (this.props.base) {
+            case 'USD':
+                rates = this.props.USD.rates;
+                console.log("stuff");
+                console.log(rates);
+                console.log(this.props.USD.rates);
+                break;
+            case 'EUR':
+                rates = this.props.EUR.rates;
+                break;
+            case 'GBP':
+                rates = this.props.GBP.rates;
+                break;
+            case 'JPY':
+                rates = this.props.JPY.rates;
+                break;
+            default:
+                rates = this.props.EUR.rates;
         }
-
         
         return (
             <View>
