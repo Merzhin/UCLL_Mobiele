@@ -31,15 +31,11 @@ class Currency extends Component {
     }
 
     createConversionRateList() {
-        return Object.keys(this.state.rates).forEach(currency => {
-            console.log(this.state.rates[currency] * this.props.amount);
-            return (
-                <Text>{currency} : { this.state.rates[currency] * this.props.amount } </Text>
-            );
-           
-        }
-        )
-    
+        const arrayOfRates = Object.entries(this.state.rates);
+        return arrayOfRates.map(( item, key ) =>
+        (
+            <Text>{item[0]} : {item[1]}</Text>
+        ));
     }
 
     createConversionRateOverride() {
@@ -77,7 +73,7 @@ class Currency extends Component {
             rates = this.props.JPY.rates;
         }
 
-        const arrayOfRates = Object.entries(this.state.rates);
+        
         return (
             <View>
                     <TouchableHighlight onPress={() => {  this.getRates(); this.setState({modalVisibility:true});}}>
@@ -88,10 +84,7 @@ class Currency extends Component {
                         <View style={ styles.modalContent }>
                             <Text style={{fontSize: 20, marginBottom: 10}}>Currency conversion!</Text>  
                             {
-                                arrayOfRates.map(( item, key ) =>
-                                (
-                                    <Text>{item[0]} : {item[1]}</Text>
-                                ))
+                               this.createConversionRateList()
                             }
                             <TouchableHighlight onPress={() => {this.setState({modalVisibility:false})}}>
                                 <View style={styles.button}>
