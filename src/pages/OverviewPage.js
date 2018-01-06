@@ -12,7 +12,6 @@ class OverviewPage extends Component {
         return (
             <View>
                 <ScrollView>
-                    <Logo />
                     <Text style={{ fontSize: 24 }}>
                         Welkom op de Karavaan VZW app!
                     </Text>
