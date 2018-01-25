@@ -3,10 +3,15 @@ import { ScrollView, Button } from 'react-native';
 import Trips from '../components/Trips';
 
 class TripsOverviewPage extends Component {
+    static navigationOptions = {
+        tabBarLabel: 'Trips',
+        header: null
+      };
     render() {
         return (
             <ScrollView>
                 <Trips navigation={this.props.navigation} />
+                
                 <Button 
                     title='Add a new trip' 
                     onPress={() => this.props.navigation.navigate('AddTrip')} 

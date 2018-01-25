@@ -31,6 +31,14 @@ const dummyBills = [
         { id: 0, isPayed: false, creditor: 'Tom', debtor: 'Pieter', amount: '4.00', currency: 'GBP' },
 ];
 
+const mapStateToProps = (state) => 
+{
+    console.log(state);
+    return { 
+        expenses: state.expenses
+    };
+};
+
 const styles = StyleSheet.create({
 
     loginButton: {
