@@ -18,7 +18,7 @@ class OverviewPage extends Component {
                     <Text>
                         Currencytest : 
                     </Text>
-                    <Currency base={'USD'} amount={'2'} /> 
+                    <Currency base={'USD'} amount={'2'}  /> 
                 </ScrollView>
             </View>
         );

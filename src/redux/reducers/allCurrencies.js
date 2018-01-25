@@ -1,5 +1,5 @@
-export default function () {
-    return [
+export default 
+    [
         {
             "base":"USD",
             "date":"2018-01-05",
@@ -36,6 +36,5 @@ export default function () {
                 "ZAR":12.361,
                 "EUR":0.83022
             }
-        },
+        }
     ]
-}

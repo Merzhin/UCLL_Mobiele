@@ -3,7 +3,7 @@ import trips from './trips';
 import expenses from './expenses';
 import expense from './expense';
 import personen from './personen';
-import selectCurrency  from './currencies';
+import selectedCurrency  from './selectedCurrency';
 import allCurrencies from './allCurrencies';
 
 export default combineReducers({
@@ -11,6 +11,6 @@ export default combineReducers({
     expenses,
     expense,
     personen,
-    selectCurrency,
+    selectedCurrency,
     allCurrencies
 });
