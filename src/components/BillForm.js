@@ -9,18 +9,18 @@ import Betaling from '../components/Betaling';
  class BillForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {  };
+        this.state = { description: "" };
     }
 
  
     addexpenseobject() {
-      this.props.onAddExpenseObject(this.props.expense, this.props.navigation.state.params.trip.id);
+      this.props.onAddExpenseObject(this.props.expense, this.props.navigation.state.params.trip.id,this.state.description);
       this.props.onClearExpenseObject();
       this.props.navigation.goBack(null);
   }
-    items() {
-      return Object.keys(this.props.items).map(key => this.props.items[key]);
-    }
+    // items() {
+    //   return Object.keys(this.props.items).map(key => this.props.items[key]);
+    // }
 
   render() {
       console.log(this.props);
@@ -29,6 +29,11 @@ import Betaling from '../components/Betaling';
         <ScrollView>
           
           <View>
+          <Text>Beschrijving expense</Text>
+                  <TextInput 
+                    onChangeText={(text) => this.setState({description : text})}
+                    value={this.state.description}
+                  />
             <Text>Totale bedrag:</Text>
           <Text>{this.props.expense.amount}</Text>
 
@@ -59,7 +64,7 @@ import Betaling from '../components/Betaling';
   const mapDispatchToProps = (dispatch) => {
       return {
           onAddExpense: (amount,description,whopaid,tripID) => { dispatch(addExpense(amount,description,whopaid,tripID)); },
-          onAddExpenseObject: (expense,tripID) => { dispatch(addExpenseObject(expense,tripID)); },
+          onAddExpenseObject: (expense,tripID,description) => { dispatch(addExpenseObject(expense,tripID,description)); },
           onClearExpenseObject: () => { dispatch(clearexpense()); }
     };
   };

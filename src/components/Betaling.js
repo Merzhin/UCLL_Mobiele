@@ -43,7 +43,7 @@ addbetaling() {
       
         
       return (
-          <View>
+       
             
               <View>
                 <Text>Betaald bedrag</Text>
@@ -66,7 +66,7 @@ addbetaling() {
 />
               
                 </View>
-        </View>
+        
         );
       }
     }

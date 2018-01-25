@@ -42,7 +42,7 @@ action.payload.expense.item.forEach(function(x) {
           }
 
           
-          const lala = {description: 'lalala', amount: action.payload.expense.amount,tripID:action.payload.tripID, personenBerekend: fin}
+          const lala = {description: action.payload.description, amount: action.payload.expense.amount,tripID:action.payload.tripID, personenBerekend: fin}
           
           
 
