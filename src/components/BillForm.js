@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
-import { Text, TextInput, ScrollView, TouchableHighlight, View, } from 'react-native';
+import { Text, TextInput, ScrollView, TouchableHighlight, View, Button} from 'react-native';
 import { connect } from 'react-redux';
 import { addExpense, addExpenseObject } from '../redux/actions/expenses';
 import { clearexpense} from '../redux/actions/expense';
 import Item from '../components/Item';
+import Betaling from '../components/Betaling';
 
  class BillForm extends Component {
     constructor(props) {
         super(props);
-        this.state = { description: '',
-                      amount: '',
-                      whopaid: '' };
+        this.state = {  };
     }
 
-    addexpense() {
-        this.props.onAddExpense(this.state.amount, this.state.description, this.state.whopaid, this.props.navigation.state.params.trip.id);
-        this.props.navigation.goBack(null);
-    }
+ 
     addexpenseobject() {
       this.props.onAddExpenseObject(this.props.expense, this.props.navigation.state.params.trip.id);
       this.props.onClearExpenseObject();
@@ -33,32 +29,17 @@ import Item from '../components/Item';
         <ScrollView>
           
           <View>
+            <Text>Totale bedrag:</Text>
           <Text>{this.props.expense.amount}</Text>
 
             <Item />
-            
-        
-            <TouchableHighlight onPress={() => this.addexpenseobject()}>
-              <Text>Add expenseobject</Text>
-            </TouchableHighlight>
-          </View>
-            <View>
-                <TextInput 
-                  onChangeText={(text) => this.setState({description : text})}
-                  value={this.state.description}
-                />
-                <TextInput 
-                  onChangeText={(text) => this.setState({amount : text})}
-                  value={this.state.amount}
-                />
-                <TextInput 
-                  onChangeText={(text) => this.setState({whopaid : text})}
-                  value={this.state.whopaid}
-                />
-            
-            <TouchableHighlight onPress={() => this.addexpense()}>
-              <Text>Add trip</Text>
-            </TouchableHighlight>
+            <Betaling/>
+            <Button
+  onPress={() => this.addexpenseobject()
+  }
+  title="Voeg expense toe"
+/>
+           
               
             </View>
             
