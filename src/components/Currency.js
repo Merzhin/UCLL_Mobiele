@@ -33,8 +33,6 @@ class Currency extends Component {
 
     createConversionRateList() {
         var arrayOfRates = [];
-        console.log("props in CCRL");
-        
         if (this.state.useInMemoryRates) {
             if (this.props.selectedCurrency) {
                 arrayOfRates = Object.entries(this.props.selectedCurrency.rates);
@@ -42,8 +40,6 @@ class Currency extends Component {
         } else {
             arrayOfRates = Object.entries(this.state.rates);
         }
-        console.log(this.state.useInMemoryRates);
-        console.log(arrayOfRates);
         return arrayOfRates.map((item) =>
         (
             <Text>{item[0]} : {item[1] * this.props.amount }</Text>
@@ -51,18 +47,29 @@ class Currency extends Component {
     }
 
     createConversionRateOverride() {
-        /*var USDtemp = {...this.state.rates.USD};
-        var EURtemp = {...this.state.rates.EUR};
-        var GBPtemp = {...this.state.rates.GBP};
-        var JPYtemp = {...this.state.rates.JPY}; */
+        var arrayOfRates = [];
+        if (this.state.useInMemoryRates) {
+            if (this.props.selectedCurrency) {
+                arrayOfRates = Object.entries(this.props.selectedCurrency.rates);
+            }
+        } else {
+            arrayOfRates = Object.entries(this.state.rates);
+        }
+        return arrayOfRates.map((item) =>
+        (
+            <View>
+                <TextInput 
+                        onChangeText={(text) => this.setState({ USDtemp: text })} 
+                        value={this.state.rates} 
+                        placeholder={String(this.state.rates.USD)} 
+                        />
+                <Text>{item[0]} : {item[1] * this.props.amount }</Text>
+            </View>
+        ));
         return (
             <View>
                 <Text style={{ fontSize: 20, marginBottom: 10 }}>Change the values to override</Text>
-                <TextInput 
-                    onChangeText={(text) => this.setState({ USDtemp: text })} 
-                    value={this.state.rates.USD} 
-                    placeholder={String(this.state.rates.USD)} 
-                />
+                
                 <TextInput 
                     onChangeText={(text) => this.setState({ EURtemp: text })} 
                     value={this.state.rates.EUR} 
@@ -78,11 +85,7 @@ class Currency extends Component {
                     value={this.state.rates.JPY} 
                     placeholder={String(this.state.rates.JPY)} 
                 />
-                <TouchableHighlight onPress={() => { this.setState({ overrideModalVisibility: false }); }}>
-                    <View style={styles.button}>
-                        <Text>Close</Text>
-                    </View>
-                </TouchableHighlight>
+                
             </View>
         );
     }
@@ -130,6 +133,11 @@ class Currency extends Component {
                                 <Modal isVisible={this.state.overrideModalVisibility}>
                                     <View style={styles.modalContent}>
                                         {this.createConversionRateOverride()}
+                                        <TouchableHighlight onPress={() => { this.setState({ overrideModalVisibility: false }); }}>
+                                            <View style={styles.button}>
+                                                <Text>Close</Text>
+                                            </View>
+                                        </TouchableHighlight>
                                     </View>
                                 </Modal>
                             </View>
