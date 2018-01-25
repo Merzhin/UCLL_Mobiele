@@ -5,6 +5,7 @@ import MoneyTransferList from '../components/MoneyTransferList';
 class MoneyTransferPage extends Component {
     static navigationOptions = {
         tabBarLabel: 'Transfers',
+        header: null
       };
     render() {
         return (

@@ -3,6 +3,10 @@ import { ScrollView, Button } from 'react-native';
 import Trips from '../components/Trips';
 
 class TripsOverviewPage extends Component {
+    static navigationOptions = {
+        tabBarLabel: 'Trips',
+        header: null
+      };
     render() {
         return (
             <ScrollView>

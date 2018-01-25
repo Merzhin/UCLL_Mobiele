@@ -7,7 +7,7 @@ const TransfersNavigator = StackNavigator({
         screen: TransfersPage,
         navigationOptions: {
             title: 'Overview of transfers',
-        },
+        }
     }, 
     AddTransfer: {
         screen: AddTransfer
