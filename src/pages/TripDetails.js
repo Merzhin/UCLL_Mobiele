@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView, Text, TouchableHighlight, Button } from 'react-native';
-
+import ExpenseTable from '../components/ExpenseTable';
 class TripPage extends Component {
     
+    constructor(props) {
+        super(props);
+        this.state = { personenBerekend:{} };
+    }
+
+    onTripPress(expense){
+        this.setState({personenBerekend: expense.personenBerekend});
+    }
+
     trips() {
 
         const expensess = [];
@@ -26,7 +35,7 @@ class TripPage extends Component {
                 <Text>{trip.text}</Text>
                 { this.trips().map((expense) => {
                     return (
-                        <TouchableHighlight onPress={() => this.onTripPress(trip)}>
+                        <TouchableHighlight onPress={() => this.onTripPress(expense)}>
                           <Text key={expense.id}> {expense.description}</Text>
                         </TouchableHighlight>
                     );   
@@ -36,6 +45,7 @@ class TripPage extends Component {
                     title='New Expense'
                     navigation={this.props.navigation}
                 />
+                <ExpenseTable personenBerekend={this.state.personenBerekend} /> 
             </ScrollView>
         );
     }

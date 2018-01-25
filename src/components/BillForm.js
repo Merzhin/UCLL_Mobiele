@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, TextInput, ScrollView, TouchableHighlight, View, } from 'react-native';
 import { connect } from 'react-redux';
 import { addExpense, addExpenseObject } from '../redux/actions/expenses';
+import { clearexpense} from '../redux/actions/expense';
 import Item from '../components/Item';
 
  class BillForm extends Component {
@@ -18,6 +19,7 @@ import Item from '../components/Item';
     }
     addexpenseobject() {
       this.props.onAddExpenseObject(this.props.expense, this.props.navigation.state.params.trip.id);
+      this.props.onClearExpenseObject();
       this.props.navigation.goBack(null);
   }
     items() {
@@ -35,7 +37,7 @@ import Item from '../components/Item';
 
             <Item />
             
-            { this.items().map((expense) => { return <Text key={expense.description}> {expense.description}</Text>})}
+        
             <TouchableHighlight onPress={() => this.addexpenseobject()}>
               <Text>Add expenseobject</Text>
             </TouchableHighlight>
@@ -76,7 +78,8 @@ import Item from '../components/Item';
   const mapDispatchToProps = (dispatch) => {
       return {
           onAddExpense: (amount,description,whopaid,tripID) => { dispatch(addExpense(amount,description,whopaid,tripID)); },
-          onAddExpenseObject: (expense,tripID) => { dispatch(addExpenseObject(expense,tripID)); }
+          onAddExpenseObject: (expense,tripID) => { dispatch(addExpenseObject(expense,tripID)); },
+          onClearExpenseObject: () => { dispatch(clearexpense()); }
     };
   };
   export default connect(mapStateToProps, mapDispatchToProps)(BillForm);

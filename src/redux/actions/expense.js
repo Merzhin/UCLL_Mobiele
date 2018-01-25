@@ -21,7 +21,12 @@ export const addBetaling = (amount,naam) => {
     }
   };
 }
-
+export const clearexpense = () => {
+  return {
+    type:'CLEAR_EXPENSE'
+   
+  };
+}
 
 export const updateItem = (users) => {
     return {
