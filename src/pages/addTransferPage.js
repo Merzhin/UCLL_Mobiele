@@ -6,6 +6,7 @@ import { addTransfer } from '../redux/actions/moneyTransfers';
 
 export class AddTransferPage extends Component {
     addTransfer() {
+        console.log(this.state);
         this.props.onAddTransfer(this.state.name, this.state.amount, this.state.currency);
         this.props.navigation.dispatch(NavigationActions.back());
     }
@@ -15,15 +16,15 @@ export class AddTransferPage extends Component {
             <ScrollView>
                 <TextInput 
                   placeholder='Who paid?'
-                  onChangeText={(text) => this.setState({ name: text })}
+                  onChangeText={(name) => this.setState({ name })}
                 />
                 <TextInput 
                   placeholder='Amount?'
-                  onChangeText={(text) => this.setState({ amount: text })}
+                  onChangeText={(amount) => this.setState({ amount })}
                 />
                 <TextInput 
                   placeholder='Currency'
-                  onChangeText={(text) => this.setState({ currency: text })}
+                  onChangeText={(currency) => this.setState({ currency })}
                 />
                 <TouchableHighlight onPress={() => this.addTransfer()}>
                   <Text>Add transfer</Text>
@@ -41,7 +42,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => { 
     return {
-          onAddTransfer: (transferObject) => { dispatch(addTransfer(transferObject)); }
+          onAddTransfer: (name, amount, currency) => { dispatch(addTransfer(name, amount, currency)); }
     };
 };
     
