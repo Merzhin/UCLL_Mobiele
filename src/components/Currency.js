@@ -11,7 +11,8 @@ class Currency extends Component {
             text: '1',
             rates: {},
             modalVisibility: false,
-            overrideModalVisibility: false
+            overrideModalVisibility: false,
+            useInMemoryRates: false
 
         }
     }
@@ -24,14 +25,25 @@ class Currency extends Component {
                     this.setState({ rates: responseData.rates });
                 })
                 .done();  
+            } else {
+                this.setState({useInMemoryRates: true});
             }
         });
     }
 
     createConversionRateList() {
-        console.log("Props in CCRL");
-        console.log(this.props);
-        const arrayOfRates = Object.entries(this.state.rates);
+        var arrayOfRates = [];
+        console.log("props in CCRL");
+        
+        if (this.state.useInMemoryRates) {
+            if (this.props.selectedCurrency) {
+                arrayOfRates = Object.entries(this.props.selectedCurrency.rates);
+            }
+        } else {
+            arrayOfRates = Object.entries(this.state.rates);
+        }
+        console.log(this.state.useInMemoryRates);
+        console.log(arrayOfRates);
         return arrayOfRates.map((item) =>
         (
             <Text>{item[0]} : {item[1] * this.props.amount }</Text>
@@ -75,13 +87,11 @@ class Currency extends Component {
         );
     }
     render() {        
-        console.log(this.props);
-        console.log(this.state);
         
         
         return (
             <View>
-                    <TouchableHighlight onPress={() => { console.log(this.props.selectCurrency(this.props.base)); console.log(this.state.selectedCurrency); this.getRates(); this.setState({ modalVisibility: true }); console.log(this.props);  }}>
+                    <TouchableHighlight onPress={() => { this.props.selectCurrency(this.props.base); this.getRates(); this.setState({ modalVisibility: true }); }}>
                         <Text>{this.props.amount} {this.props.base} </Text>
                     </TouchableHighlight>
 
@@ -89,19 +99,34 @@ class Currency extends Component {
                         <ScrollView>
                             <View style={styles.modalContent}>
                                 <Text style={{ fontSize: 20, marginBottom: 10 }}>Currency conversion!</Text>  
-                                {
-                                this.createConversionRateList()
-                                }
                                 <TouchableHighlight onPress={() => { this.setState({ modalVisibility: false }); }}>
                                     <View style={styles.button}>
                                         <Text>Close</Text>
                                     </View>
                                 </TouchableHighlight>
-                                <TouchableHighlight onPress={() => { this.setState({overrideModalVisibility: true }); }}>
+                                <TouchableHighlight onPress={() => { this.setState({useInMemoryRates: true });  }}>
                                     <View style={styles.button}>
-                                        <Text>Override Rates</Text>
+                                        <Text>Use in memory rates</Text>
                                     </View>
                                 </TouchableHighlight>
+                                <TouchableHighlight onPress={() => { this.setState({useInMemoryRates: false });  }}>
+                                    <View style={styles.button}>
+                                        <Text>Use online rates</Text>
+                                    </View>
+                                </TouchableHighlight>
+                                <TouchableHighlight onPress={() => { this.setState({overrideModalVisibility: true }); }}>
+                                    <View>
+                                        <View style={styles.button}>
+                                            <Text>Override Rates</Text>
+                                        </View>
+                                    </View>
+                                </TouchableHighlight>
+                                <View style={styles.list}>
+                                    
+                                    {
+                                        this.createConversionRateList()
+                                    }
+                                </View>
                                 <Modal isVisible={this.state.overrideModalVisibility}>
                                     <View style={styles.modalContent}>
                                         {this.createConversionRateOverride()}
@@ -122,7 +147,7 @@ const mapStateToProps = (state) =>
     console.log("State in MSTP");
     console.log(state);
     return { 
-        selectedCurrency: state.selectCurrency
+        selectedCurrency: state.selectedCurrency
     };
 };
 
@@ -156,5 +181,8 @@ const styles = StyleSheet.create({
           alignItems: 'center',
           borderRadius: 4,
           borderColor: 'rgba(0, 0, 0, 0.1)',
+        },
+        list: {
+            
         }
 });
