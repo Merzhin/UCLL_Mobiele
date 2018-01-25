@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, FlatList, View } from 'react-native';
 import { connect } from 'react-redux';
+import Currency from '../components/Currency';
 
 
 export class MoneyTransferList extends Component {
@@ -13,7 +14,8 @@ export class MoneyTransferList extends Component {
                 data={this.props.transfers}
                 renderItem={({ item }) => (
                     <View>
-                        <Text> {item.name} paid {item.amount}{item.currency} </Text>
+                         <Currency base={item.currency} amount={item.amount}  /> 
+                        
                     </View>
                 )}
                 />
