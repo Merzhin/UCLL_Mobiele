@@ -38,6 +38,17 @@ addbetaling() {
    
      return Object.keys(this.props.personen).map(key => this.props.personen[key])
    }
+
+  
+    addtrip() 
+    {
+        const isValid = validate();
+        if (isValid)
+        {
+            this.props.onAddTrip(this.state.location);
+            this.props.navigation.dispatch(NavigationActions.back());
+        }
+    }
     render() {
         console.log(this.props);
       
@@ -50,7 +61,7 @@ addbetaling() {
               <TextInput 
                   onChangeText={(text) => this.onChange2( text)}
                   value={this.state.betalingamount}
-                 
+                  keyboardType='numeric'
                   />
 <Text>Wie heeft betaald?</Text>
                   <Picker
