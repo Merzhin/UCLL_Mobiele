@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "immutable": "^3.8.2",
+    "material-ui": "^0.20.0",
     "react": "16.0.0",
     "react-native": "0.51.0",
     "react-native-modal": "^4.1.1",

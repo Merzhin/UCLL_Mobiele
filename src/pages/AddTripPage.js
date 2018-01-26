@@ -5,17 +5,52 @@ import { connect } from 'react-redux';
 import { addTrip } from '../redux/actions/trips';
 
 export class AddTripPage extends Component {
-    addtrip() {
-        this.props.onAddTrip(this.state.location);
-        this.props.navigation.dispatch(NavigationActions.back());
+    constructor(props) {
+        super(props);
+        this.state = {
+            location: "",
+            locationError: ""
+        }
+    }
+    
+    
+    validate ()
+    {
+        let isValid = true; 
+        const errors = {
+            locationError: ""
+        };
+        
+        if (this.state.location.length < 1 ) 
+        {
+            isValid = false;
+            errors.locationError = "Location can't be empty"
+        }
+
+        this.setState({
+            ...this.state,
+            ...this.errors
+        })
+        return isValid;
+    }
+
+    addtrip() 
+    {
+        const isValid = validate();
+        if (isValid)
+        {
+            this.props.onAddTrip(this.state.location);
+            this.props.navigation.dispatch(NavigationActions.back());
+        }
     }
     render() {
         return (
             <ScrollView>
-                <TextInput 
-                  placeholder='Enter Location'
-                  onChangeText={(text) => this.setState({ location: text })}
+                <TextInput
+                    placeholder='Enter Location'
+                    onChangeText={(text) => this.setState({ location: text })}
                 />
+                <Text>{this.state.locationError}</Text>
                 <TouchableHighlight onPress={() => this.addtrip()}>
                   <Text>Add trip</Text>
                 </TouchableHighlight>
