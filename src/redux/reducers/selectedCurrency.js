@@ -1,4 +1,3 @@
-import { getCurrencyDataFor } from "../actions/currencies";
 import currencies from './allCurrencies';
 
 export default function (state=null, action) 
@@ -11,7 +10,12 @@ export default function (state=null, action)
             var out = 'stuff';
             Object.entries(currencies).map(( item ) => 
             {
-                if (item[1].base === action.payload.base) { console.log("Item: ") ; console.log(item[1]); out = item[1]; }
+                if (item[1].base === action.payload.base) 
+                { 
+                    console.log("Item: ") ; 
+                    console.log(item[1]); 
+                    out = item[1]; 
+                }
             }
             );
             return out;
