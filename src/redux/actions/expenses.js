@@ -12,12 +12,13 @@ export const addExpense = (amount,description,whopaid,tripID) => {
     };
 }
 
-export const addExpenseObject = (expense,tripID,description) => {
+export const addExpenseObject = (expense,tripID,description,categorie) => {
   return {
     type: 'ADD_EXPENSEOBJECT',
    payload:{ expense,
     tripID,
-  description}
+  description,
+categorie}
   };
 }
 

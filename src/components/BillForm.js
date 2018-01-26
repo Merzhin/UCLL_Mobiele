@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TextInput, ScrollView, TouchableHighlight, View, Button} from 'react-native';
+import { Text, TextInput, ScrollView, TouchableHighlight, View, Button,Picker} from 'react-native';
 import { connect } from 'react-redux';
 import { addExpense, addExpenseObject } from '../redux/actions/expenses';
 import { clearexpense} from '../redux/actions/expense';
@@ -9,19 +9,24 @@ import Betaling from '../components/Betaling';
  class BillForm extends Component {
     constructor(props) {
         super(props);
-        this.state = { description: "" };
+        this.state = { description: "" ,
+                     categorie: "" };
     }
 
  
     addexpenseobject() {
-      this.props.onAddExpenseObject(this.props.expense, this.props.navigation.state.params.trip.id,this.state.description);
+      this.props.onAddExpenseObject(this.props.expense, this.props.navigation.state.params.trip.id,this.state.description,this.state.categorie);
       this.props.onClearExpenseObject();
       this.props.navigation.goBack(null);
   }
     // items() {
     //   return Object.keys(this.props.items).map(key => this.props.items[key]);
     // }
-
+    categories() {
+    
+   
+      return Object.keys(this.props.categories).map(key => this.props.categories[key])
+    }
   render() {
       console.log(this.props);
      
@@ -34,6 +39,14 @@ import Betaling from '../components/Betaling';
                     onChangeText={(text) => this.setState({description : text})}
                     value={this.state.description}
                   />
+                  <Text>Welke Categorie</Text>
+                  <Picker
+                    selectedValue={this.state.categorie}
+                    onValueChange={(itemValue, itemIndex) => this.setState({categorie: itemValue})}>
+                  {/* <Picker.Item label="Alle" value="alle" /> */}
+                    { this.categories().map((categorie) => {return <Picker.Item key={categorie.naam} label={categorie.naam} value={categorie.naam}/> })}
+                  </Picker>
+
             <Text>Totale bedrag:</Text>
           <Text>{this.props.expense.amount}</Text>
 
@@ -56,7 +69,8 @@ import Betaling from '../components/Betaling';
   const mapStateToProps = (state) => {
     return {
       items: state.expense.item,
-      expense: state.expense
+      expense: state.expense,
+      categories: state.categories.categories
       //trips: state.trips.trips
     };
   };
@@ -64,7 +78,7 @@ import Betaling from '../components/Betaling';
   const mapDispatchToProps = (dispatch) => {
       return {
           onAddExpense: (amount,description,whopaid,tripID) => { dispatch(addExpense(amount,description,whopaid,tripID)); },
-          onAddExpenseObject: (expense,tripID,description) => { dispatch(addExpenseObject(expense,tripID,description)); },
+          onAddExpenseObject: (expense,tripID,description,categorie) => { dispatch(addExpenseObject(expense,tripID,description,categorie)); },
           onClearExpenseObject: () => { dispatch(clearexpense()); }
     };
   };
