@@ -1,12 +1,13 @@
 
  const init = {
-     id:'', description: 'drank dag2', amount: 5, item:[{ amount:1,  description: 'drank dag 1', user:'jan'}], betaling:[{naam:'jan', amount:1}]
+     id:'', description: 'drank dag2',totalamount:0, amount: 0, item:[{ amount:0,  description: 'drank dag 1', user:'jan'}], betaling:[{naam:'jan', amount:0}]
   }
   const reset={}
  
    const reducer = (state=init, action) => {
    switch(action.type) {
      case 'ADD_ITEM':
+     state.totalamount=state.totalamount+action.payload.amount;
      state.amount=state.amount+action.payload.amount;
          return {...state,
           item: [...state.item, action.payload]};
@@ -25,7 +26,7 @@
 
             case 'CLEAR_EXPENSE':
             state=reset;
-            return { id:'', description: 'drank dag2', amount: 5, item:[{ amount:1,  description: 'drank dag 1', user:'jan'}], betaling:[{naam:'jan', amount:1}]};
+            return { id:'', description: 'drank dag2', totalamount:0,amount: 0, item:[{ amount:0,  description: 'drank dag 1', user:'jan'}], betaling:[{naam:'jan', amount:0}]};
 
      default:
        return state;

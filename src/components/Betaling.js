@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
     constructor(props) {
         super(props);
         this.state = { 
-                      betalingamount: 1,
+                      betalingamount: 0,
                       betalinguser: '' };
     }
 

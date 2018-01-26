@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView, Text, TouchableHighlight, Button } from 'react-native';
 import ExpenseTable from '../components/ExpenseTable';
+import CategoryTable from '../components/CategoryTable';
+
 class TripPage extends Component {
     
     constructor(props) {
@@ -46,6 +48,7 @@ class TripPage extends Component {
                     navigation={this.props.navigation}
                 />
                 <ExpenseTable personenBerekend={this.state.personenBerekend} /> 
+                <CategoryTable />
             </ScrollView>
         );
     }

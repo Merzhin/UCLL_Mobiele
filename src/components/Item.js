@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
     constructor(props) {
         super(props);
         this.state = { description: '',
-                      amount: 1, 
+                      amount: 0, 
                       user: ''};
     }
 

@@ -1,6 +1,6 @@
 
  const init = {
-   expenses: [{ id: 0, amount:'',  description: 'drank dag 1', whopaid: 'jan', tripID: ''}]
+   expenses: [{ description: "ree", totalamount: 0, tripID: 0, personenBerekend: [], categorie: "transport"}]
  }
 
   const reducer = (state=init, action) => {
@@ -42,7 +42,7 @@ action.payload.expense.item.forEach(function(x) {
           }
 
           
-          const lala = {description: action.payload.description, amount: action.payload.expense.amount,tripID:action.payload.tripID, personenBerekend: fin, categorie: action.payload.categorie}
+          const lala = {description: action.payload.description, totalamount: action.payload.expense.totalamount,tripID:action.payload.tripID, personenBerekend: fin, categorie: action.payload.categorie}
           
           
 
