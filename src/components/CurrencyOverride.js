@@ -51,7 +51,7 @@ class CurrencyOverride extends Component {
                     <View style={styles.modalContent}>
                     <ScrollView>
                         <Text style={{ fontSize: 20, marginBottom: 10 }}>Change the values to override the in memory currency value for {this.props.base} </Text>
-                        <TouchableHighlight onPress={() => { console.log(this.props); updateCurrency(this.props.base, this.props.rates)  }}>
+                        <TouchableHighlight onPress={() => { console.log(this.props); this.props.updateCurrency(this.props.base, this.props.rates)  }}>
                             <View style={styles.button}>
                                 <Text>Override Rates</Text>
                             </View>
@@ -81,7 +81,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapDispatchToProps)(CurrencyOverride);
+export default connect(null, mapDispatchToProps)(CurrencyOverride);
 
 const styles = StyleSheet.create({
     container: {
