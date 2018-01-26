@@ -19,8 +19,6 @@ export default function (state=null, action)
             }
             );
             return out;
-            break;
-            
         default :
             return state; 
     };

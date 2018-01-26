@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Modal from 'react-native-modal';
 import { Text, TouchableHighlight, View, StyleSheet, NetInfo, TextInput, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import { selectCurrency } from '../redux/actions/currencies';
+import { selectCurrency, convertCurrency } from '../redux/actions/currencies';
 import CurrencyOverride from './CurrencyOverride';
 
 class Currency extends Component {
@@ -50,14 +50,14 @@ class Currency extends Component {
         
         return (
             <View>
-                    <TouchableHighlight onPress={() => { this.getRatesInMemory(); this.getRates(); this.setState({ modalVisibility: true }); }}>
+                    <TouchableHighlight onPress={() => { this.props.convertCurrency("USD","EUR"); this.getRatesInMemory(); this.getRates(); this.setState({ modalVisibility: true }); }}>
                         <Text>{this.props.amount} {this.props.base} </Text>
                     </TouchableHighlight>
 
                     <Modal isVisible={this.state.modalVisibility}>
                         <ScrollView>
                             <View style={styles.modalContent}>
-                                <Text style={{ fontSize: 20, marginBottom: 10 }}>Currency conversion!</Text>  
+                                <Text style={{ fontSize: 20, marginBottom: 10 }}>Currency conversion! {this.props.convertedCurrency}</Text>  
                                 <TouchableHighlight onPress={() => { this.setState({ modalVisibility: false }); }}>
                                     <View style={styles.button}>
                                         <Text>Close</Text>
@@ -95,13 +95,15 @@ const mapStateToProps = (state) =>
     console.log("State in MSTP");
     console.log(state);
     return { 
-        selectedCurrency: state.selectedCurrency
+        selectedCurrency: state.selectedCurrency,
+        convertedCurrency: state.convertedCurrency
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        selectCurrency: (base) => { dispatch(selectCurrency(base)); }
+        selectCurrency: (base) => { dispatch(selectCurrency(base)); },
+        convertCurrency: (base, target) => {dispatch(convertCurrency(base, target));}
     };
 };
 

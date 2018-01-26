@@ -23,7 +23,20 @@ export default function (state={}, action)
                 newCurrencies
             }
             break;
-            
+        case 'CONVERT_CURRENCY' : 
+            console.log("Convert currency");
+            console.log(action.payload);
+            const conversionRate = 0;
+            Object.entries(currencies).map((currencyObject) =>
+            {
+                if (currencyObject[1].base === action.payload.base) 
+                {
+                    conversionRate = currencyObject[1].rates[action.payload.target];
+                }; 
+            }
+
+            );
+            return conversionRate;
         default :
             return state; 
     };

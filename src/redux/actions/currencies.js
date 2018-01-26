@@ -9,7 +9,6 @@ export const selectCurrency = (currencyType) => {
 }
 
 export const updateCurrency = (base, rates) => {
-  console.log("you update currency");
   return {
     type: 'UPDATE_CURRENCY',
     payload: 
@@ -19,5 +18,17 @@ export const updateCurrency = (base, rates) => {
     }
   }
 }
+
+export const convertCurrency = (base, target) =>
+{
+  return {
+    type: 'CONVERT_CURRENCY',
+    payload: 
+    {
+      base: base,
+      target: target
+    }
+  }
+} 
 
 
