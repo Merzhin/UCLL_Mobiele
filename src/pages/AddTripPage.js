@@ -9,7 +9,7 @@ export class AddTripPage extends Component {
         super(props);
         this.state = {
             location: "",
-            locationError: ""
+            locationError: "Location can't be empty"
         }
     }
     
@@ -17,30 +17,25 @@ export class AddTripPage extends Component {
     validate ()
     {
         let isValid = true; 
-        const errors = {
-            locationError: ""
-        };
         
         if (this.state.location.length < 1 ) 
         {
             isValid = false;
-            errors.locationError = "Location can't be empty"
+            this.setState({locationError: "Location can't be empty"});
         }
-
-        this.setState({
-            ...this.state,
-            ...this.errors
-        })
         return isValid;
     }
 
     addtrip() 
     {
-        const isValid = validate();
+        const isValid = this.validate();
         if (isValid)
         {
             this.props.onAddTrip(this.state.location);
             this.props.navigation.dispatch(NavigationActions.back());
+        } else {
+            console.log(this.state.locationError);
+            alert(this.state.locationError);
         }
     }
     render() {
@@ -50,7 +45,6 @@ export class AddTripPage extends Component {
                     placeholder='Enter Location'
                     onChangeText={(text) => this.setState({ location: text })}
                 />
-                <Text>{this.state.locationError}</Text>
                 <TouchableHighlight onPress={() => this.addtrip()}>
                   <Text>Add trip</Text>
                 </TouchableHighlight>
