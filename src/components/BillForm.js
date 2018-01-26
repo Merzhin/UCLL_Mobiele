@@ -37,12 +37,8 @@ import Betaling from '../components/Betaling';
         let isValid = true; 
         if (this.state.description.length < 1) {
             isValid = false;
-            this.setState({descriptionError: "Description can't be empty"});
+            this.setState({ descriptionError: "Description can't be empty"});
         }
-        this.setState({
-            ...this.state,
-            ...this.errors
-        });
         return isValid;
     }
     
