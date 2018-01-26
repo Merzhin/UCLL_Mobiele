@@ -3,6 +3,7 @@ import OverviewPage from '../pages/OverviewPage';
 import BillsPage from '../pages/BillsPage';
 import TripStack from './TripsNavigator';
 import MoneyTransferNavigator from './TransfersNavigator';
+import PeopleNav from './PersonNavigator'
 
 const MainNavigator = TabNavigator({
         Overview: {
@@ -12,9 +13,10 @@ const MainNavigator = TabNavigator({
             screen: TripStack
         }, 
         Bills: {
-            screen: BillsPage
+            // screen: BillsPage
+            screen: PeopleNav
         },
-        Transfers: {
+        People: {
             screen: MoneyTransferNavigator
         }
 });

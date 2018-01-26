@@ -14,6 +14,7 @@ export class MoneyTransferList extends Component {
                 data={this.props.transfers}
                 renderItem={({ item }) => (
                     <View>
+                        <Text>{item.name} paid </Text>
                          <Currency base={item.currency} amount={item.amount}  /> 
                         
                     </View>

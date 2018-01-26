@@ -3,6 +3,7 @@ import TripsOverviewPage from '../pages/TripsOverviewPage';
 import TripDetails from '../pages/TripDetails';
 import BillForm from '../components/BillForm';
 import AddTrip from '../pages/AddTripPage';
+import AddPayment from '../pages/addTransferPage'
 
 const TripsNavigator = StackNavigator({
     Trips: {
@@ -22,6 +23,9 @@ const TripsNavigator = StackNavigator({
     },
     NewExpense: {
         screen: BillForm
+    },
+    AddPayment: {
+        screen: AddPayment
     }
 });
 
