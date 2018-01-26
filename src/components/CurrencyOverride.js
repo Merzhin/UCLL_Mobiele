@@ -27,12 +27,14 @@ class CurrencyOverride extends Component {
 
         (                   
             (
-                <View>
+                <View key={item[0]}>
+                    <Text>
+                        {item[0]}
+                    </Text>
                     <TextInput 
                     keyboardType='numeric'
                     onChangeText={(text) => (this.props.rates[item[0]] = text)} 
-                    value={this.props.rates[item[1]]} 
-                    placeholder={String(this.props.rates[item[1]])} 
+                    placeholder={String(this.props.rates[item[0]])} 
                     />
                 </View>
             )             
@@ -44,21 +46,21 @@ class CurrencyOverride extends Component {
             <View>
                 <TouchableHighlight onPress={() => { this.setState({overrideModalVisibility: true }); }}>
                     <View style={styles.button}>
-                        <Text>Override Rates</Text>
+                        <Text>Override in memory Rates</Text>
                     </View>
                 </TouchableHighlight>
                 <Modal isVisible={this.state.overrideModalVisibility}>
                     <View style={styles.modalContent}>
                     <ScrollView>
-                        <Text style={{ fontSize: 20, marginBottom: 10 }}>Change the values to override the in memory currency value for {this.props.base} </Text>
-                        <TouchableHighlight onPress={() => { console.log(this.props); this.props.updateCurrency(this.props.base, this.props.rates)  }}>
+                        <Text style={{ fontSize: 20, marginBottom: 10 }}>Change the values to override the in memory currency value for {this.props.base}.</Text>
+                        <TouchableHighlight onPress={() => { this.props.updateCurrency(this.props.base, this.props.rates); this.setState({overrideModalVisibility: false})  }}>
                             <View style={styles.button}>
                                 <Text>Override Rates</Text>
                             </View>
                         </TouchableHighlight>
                         <TouchableHighlight onPress={() => { this.setState({ overrideModalVisibility: false }); }}>
                             <View style={styles.button}>
-                                <Text>Close</Text>
+                                <Text>Cancel</Text>
                             </View>
                         </TouchableHighlight>
                         <View>

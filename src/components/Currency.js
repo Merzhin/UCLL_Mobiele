@@ -41,7 +41,7 @@ class Currency extends Component {
         
         return arrayOfRates.map((item) =>
         (
-            <Text>{item[0]} : {item[1] * this.props.amount }</Text>
+            <Text key={item[0]}>{item[0]} : {item[1] * this.props.amount }</Text>
         ));
     }
 
