@@ -3,6 +3,7 @@ import { ScrollView, Text, TextInput, TouchableHighlight } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import { addTransfer } from '../redux/actions/moneyTransfers';
+import CurrencyPicker from '../components/CurrencyPicker';
 
 export class AddTransferPage extends Component {
     addTransfer() {
@@ -22,10 +23,7 @@ export class AddTransferPage extends Component {
                   placeholder='Amount?'
                   onChangeText={(amount) => this.setState({ amount })}
                 />
-                <TextInput 
-                  placeholder='Currency'
-                  onChangeText={(currency) => this.setState({ currency })}
-                />
+                <CurrencyPicker />
                 <TouchableHighlight onPress={() => this.addTransfer()}>
                   <Text>Add transfer</Text>
                 </TouchableHighlight>

@@ -3,6 +3,7 @@ import Modal from 'react-native-modal';
 import { Text, TouchableHighlight, View, StyleSheet, NetInfo, TextInput, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { selectCurrency } from '../redux/actions/currencies';
+import CurrencyOverride from './CurrencyOverride';
 
 class Currency extends Component {
     constructor(props) {
@@ -11,8 +12,6 @@ class Currency extends Component {
             text: '1',
             rates: {},
             modalVisibility: false,
-            overrideModalVisibility: false,
-            useInMemoryRates: false
 
         }
     }
@@ -25,73 +24,33 @@ class Currency extends Component {
                     this.setState({ rates: responseData.rates });
                 })
                 .done();  
-            } else {
-                this.setState({useInMemoryRates: true});
-            }
+            } 
         });
     }
 
-    createConversionRateList() {
-        var arrayOfRates = [];
-        console.log("props in CCRL");
-        
-        if (this.state.useInMemoryRates) {
-            if (this.props.selectedCurrency) {
-                arrayOfRates = Object.entries(this.props.selectedCurrency.rates);
-            }
-        } else {
-            arrayOfRates = Object.entries(this.state.rates);
+    getRatesInMemory() {
+        this.props.selectCurrency(this.props.base); 
+        if (this.props.selectedCurrency) {
+            this.setState({rates: this.props.selectedCurrency.rates});
         }
-        console.log(this.state.useInMemoryRates);
-        console.log(arrayOfRates);
+    }
+
+    createConversionRateList() {
+        var arrayOfRates = []; 
+        arrayOfRates = Object.entries(this.state.rates);
+        
         return arrayOfRates.map((item) =>
         (
             <Text>{item[0]} : {item[1] * this.props.amount }</Text>
         ));
     }
 
-    createConversionRateOverride() {
-        /*var USDtemp = {...this.state.rates.USD};
-        var EURtemp = {...this.state.rates.EUR};
-        var GBPtemp = {...this.state.rates.GBP};
-        var JPYtemp = {...this.state.rates.JPY}; */
-        return (
-            <View>
-                <Text style={{ fontSize: 20, marginBottom: 10 }}>Change the values to override</Text>
-                <TextInput 
-                    onChangeText={(text) => this.setState({ USDtemp: text })} 
-                    value={this.state.rates.USD} 
-                    placeholder={String(this.state.rates.USD)} 
-                />
-                <TextInput 
-                    onChangeText={(text) => this.setState({ EURtemp: text })} 
-                    value={this.state.rates.EUR} 
-                    placeholder={String(this.state.rates.EUR)} 
-                />
-                <TextInput 
-                    onChangeText={(text) => this.setState({ GBPtemp: text })} 
-                    value={this.state.rates.GBP} 
-                    placeholder={String(this.state.rates.GBP)} 
-                />
-                <TextInput 
-                    onChangeText={(text) => this.setState({ JPYtemp: text })} 
-                    value={this.state.rates.JPY} 
-                    placeholder={String(this.state.rates.JPY)} 
-                />
-                <TouchableHighlight onPress={() => { this.setState({ overrideModalVisibility: false }); }}>
-                    <View style={styles.button}>
-                        <Text>Close</Text>
-                    </View>
-                </TouchableHighlight>
-            </View>
-        );
-    }
     render() {        
         
         
         return (
             <View>
-                    <TouchableHighlight onPress={() => { this.props.selectCurrency(this.props.base); this.getRates(); this.setState({ modalVisibility: true }); }}>
+                    <TouchableHighlight onPress={() => { this.getRatesInMemory(); this.getRates(); this.setState({ modalVisibility: true }); }}>
                         <Text>{this.props.amount} {this.props.base} </Text>
                     </TouchableHighlight>
 
@@ -104,34 +63,23 @@ class Currency extends Component {
                                         <Text>Close</Text>
                                     </View>
                                 </TouchableHighlight>
-                                <TouchableHighlight onPress={() => { this.setState({useInMemoryRates: true });  }}>
+                                <TouchableHighlight onPress={() => { this.getRatesInMemory(); }}>
                                     <View style={styles.button}>
                                         <Text>Use in memory rates</Text>
                                     </View>
                                 </TouchableHighlight>
-                                <TouchableHighlight onPress={() => { this.setState({useInMemoryRates: false });  }}>
+                                <TouchableHighlight onPress={() => { this.getRates();  }}>
                                     <View style={styles.button}>
                                         <Text>Use online rates</Text>
                                     </View>
                                 </TouchableHighlight>
-                                <TouchableHighlight onPress={() => { this.setState({overrideModalVisibility: true }); }}>
-                                    <View>
-                                        <View style={styles.button}>
-                                            <Text>Override Rates</Text>
-                                        </View>
-                                    </View>
-                                </TouchableHighlight>
+                                <CurrencyOverride rates={this.state.rates} base={this.props.base}/>
                                 <View style={styles.list}>
                                     
                                     {
                                         this.createConversionRateList()
                                     }
                                 </View>
-                                <Modal isVisible={this.state.overrideModalVisibility}>
-                                    <View style={styles.modalContent}>
-                                        {this.createConversionRateOverride()}
-                                    </View>
-                                </Modal>
                             </View>
                         </ScrollView>
                     </Modal>
@@ -155,7 +103,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         selectCurrency: (base) => { dispatch(selectCurrency(base)); }
     };
-  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Currency);
 

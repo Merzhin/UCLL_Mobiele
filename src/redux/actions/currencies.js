@@ -8,4 +8,16 @@ export const selectCurrency = (currencyType) => {
     };
 }
 
+export const updateCurrency = (base, rates) => {
+  console.log("you update currency");
+  return {
+    type: 'UPDATE_CURRENCY',
+    payload: 
+    {
+      base: base,
+      rates: rates
+    }
+  }
+}
+
 
