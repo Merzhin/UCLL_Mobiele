@@ -27,7 +27,14 @@ import PropTypes from 'prop-types';
 
 
 additem() {
-  this.props.onAddItem(this.state.amount,this.state.description,this.state.user);
+  const isValid = this.validate();
+        if (isValid)
+        {
+          this.props.onAddItem(this.state.amount,this.state.description,this.state.user);
+        } else {
+            alert(this.state.descriptionError);
+        }
+  
   
 // this.props.navigation.goBack(null);
 }
@@ -39,6 +46,17 @@ additem() {
    
      return Object.keys(this.props.personen).map(key => this.props.personen[key])
    }
+
+   validate() {
+       let isValid = true; 
+       
+       if (this.state.description.length < 1) {
+           isValid = false;
+           this.setState({ descriptionError: "Item description can't be empty" });
+       }
+       return isValid;
+   }
+
     render() {
         console.log(this.props);
       
@@ -55,6 +73,7 @@ additem() {
                   <TextInput 
                     onChangeText={(text) => this.onChange( text)}
                     value={this.state.amount}
+                    keyboardType='numeric'
                   />
 <Text>Wie is het bedrag verschuldigd?</Text>
                   <Picker

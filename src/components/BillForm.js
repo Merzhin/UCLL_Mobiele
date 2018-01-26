@@ -21,7 +21,7 @@ import Betaling from '../components/Betaling';
           this.props.onClearExpenseObject();
           this.props.navigation.goBack(null);
         } else {
-          Alert(this.state.descriptionError);
+          alert(this.state.descriptionError);
       }
   }
     // items() {
@@ -35,17 +35,10 @@ import Betaling from '../components/Betaling';
 
     validate() {
         let isValid = true; 
-        const errors = {
-            locationError: ''
-        };
         if (this.state.description.length < 1) {
             isValid = false;
-            errors.descriptionError = "Description can't be empty";
+            this.setState({ descriptionError: "Description can't be empty"});
         }
-        this.setState({
-            ...this.state,
-            ...this.errors
-        });
         return isValid;
     }
     
@@ -72,7 +65,7 @@ import Betaling from '../components/Betaling';
                   </Picker>
 
             <Text>Totale bedrag:</Text>
-          <Text>{this.props.expense.amount}</Text>
+            <Text>{this.props.expense.amount}</Text>
 
             <Item />
             <Betaling/>
